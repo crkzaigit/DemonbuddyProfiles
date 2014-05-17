@@ -11,38 +11,10 @@
 8. 重新启动Demonbuddy.exe
 
 
-Triniry设置：(请参照设置截图)
+Triniry设置：
 =====================
-COMBAT/MISC:
 
-Trigger range for Elite Combat = 100
-
-Trigger range for Trash Combat = 35
-
-Minimum Trash Mob Pack Size = 5
-
-Trash Pack Cluster Radius = 20
-
-禁用"Force Kill Summoners"
-
-禁用 "Extend rash-kill range after combat
-
-设置 Treasure Goblins 为 Kamikaze
-
-启用 "Attempt to avoid AOE" and "Kite to Avoid Death on Low HP"
-
-禁用 "Path Around AOE" and "Avoid Savage Beast Charge"
-
-OBJECTS
-
-Container Open Range = 60
-
-启用 "Open Chests"
-
-ADVANCED
-
-"Enable Gold Inactivity" = 180
-
+请参照设置截图文件夹内的图片
 
 注意事项
 =====================
