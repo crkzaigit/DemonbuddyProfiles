@@ -1,0 +1,108 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="460" Background="Black" Foreground="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="375*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="229">
+                <Button Content="Dump ActorSNO" HorizontalAlignment="Center" Name="dumpActorSNO" Width="100" Command="{Binding Path=dumpActorSNO}" Margin="10"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Foreground="White"  Content="Low Health %:" Margin="0" HorizontalAlignment="Right" Width="130"/>
+                    <TextBox Width="25" HorizontalAlignment="Left" Margin="0" Name="lowHealthValue"  Text="{Binding Path=LowHealthPerc}" IsReadOnly="True" />
+                </StackPanel>
+                <Slider Name="lowHealth" Maximum="100" Minimum="5" SmallChange="1" LargeChange="5" TickFrequency="5" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding Path=LowHealthPerc}" Margin="30,0,30,0" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Label Foreground="White"  Content="Magic Find %:" Margin="0" HorizontalAlignment="Right" Width="130"/>
+                    <TextBox HorizontalAlignment="Left" Margin="0" Name="MagicFindValue" Width="25" Text="{Binding Path=MagicFindPerc}" IsReadOnly="True" />
+                </StackPanel>
+                <Slider Name="magicFind" Maximum="100" Minimum="5" SmallChange="1" LargeChange="5" TickFrequency="5" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding Path=MagicFindPerc}" Margin="30,0,30,0" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Label Foreground="White"  Content="Barricade Distance:" Margin="0" HorizontalAlignment="Right" Width="130"/>
+                    <TextBox HorizontalAlignment="Left" Margin="0" Name="barricadeDistance" Width="30" Text="{Binding Path=BarricadeDistance}" IsReadOnly="True" />
+                </StackPanel>
+                <Slider Name="barricade" Maximum="25" Minimum="1" SmallChange=".5" LargeChange="5" TickFrequency=".5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding Path=BarricadeDistance}" Margin="30,0,30,0" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                    <Label Content="Enable Logging" HorizontalAlignment="Left" Margin="0,0,5,0" Name="logging" Width="130" Foreground="White" HorizontalContentAlignment="Right" FlowDirection="LeftToRight" />
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding LoggingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,60,0" Name="loggingEnabled"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                    <Label Content="Enable Debug Logging" HorizontalAlignment="Left" Margin="0,0,5,0" Name="debugLogging" Width="130" Foreground="White" HorizontalContentAlignment="Right" FlowDirection="LeftToRight" />
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding DebugLoggingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,60,0" Name="debugLoggingEnabled"/>
+                </StackPanel>
+                <Rectangle Height="2" Fill="Gray" Margin="0,7,0,0"/>
+                <Label Content="Statuses" Foreground="White" Margin="0,3,0,3" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15" />
+                <Rectangle Height="2" Fill="Gray"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
+                    <Label Content="Cold" HorizontalAlignment="Left" Margin="0,0,5,0" Name="cold" Width="70" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding ColdEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0" Name="coldEnabled"/>
+                    <Label Content="Fire" HorizontalAlignment="Left" Margin="0,0,5,0" Name="fire" Width="85" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding FireEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,15,0" Name="fireEnabled"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
+                    <Label Content="Arcane" HorizontalAlignment="Left" Margin="0,0,5,0" Name="arcane" Width="70" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding ArcaneEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0" Name="arcaneEnabled"/>
+                    <Label Content="Poison" HorizontalAlignment="Left" Margin="0,0,5,0" Name="poison" Width="85" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding PoisonEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,15,0" Name="poisonEnabled"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
+                    <Label Content="Lightning" HorizontalAlignment="Left" Margin="0,0,5,0" Name="lightning" Width="70" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding LightningEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0" Name="lightningEnabled"/>
+                    <Label Content="Elite" HorizontalAlignment="Left" Margin="0,0,5,0" Name="elite" Width="85" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding EliteEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,15,0" Name="eliteEnabled"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0" >
+                    <Label Content="Shrine" HorizontalAlignment="Left" Margin="0,0,5,0" Name="shrine" Width="70" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding ShrineEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0" Name="shrineEnabled"/>
+                    <Label Content="Well" HorizontalAlignment="Left" Margin="0,0,5,0" Name="well" Width="85" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding WellEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,15,0" Name="wellEnabled"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
+                    <Label Content="Low Health" HorizontalAlignment="Left" Margin="0,0,5,0" Name="lowHealthCB" Width="70" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding LowHealthEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0" Name="lowHealthEnabled"/>
+                    <Label Content="Critical Health" HorizontalAlignment="Left" Margin="0,0,5,0" Name="criticalHealth" Width="85" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding CriticalHealthEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,15,0" Name="criticalHealthEnabled"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
+                    <Label Content="3Enemies" HorizontalAlignment="Left" Margin="0,0,5,0" Name="threeememies" Width="70" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding ThreeEnemiesEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0" Name="threeEnemiesEnabled"/>
+                    <Label Content="5Enemies" HorizontalAlignment="Left" Margin="0,0,5,0" Name="fiveenemies" Width="85" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding FiveEnemiesEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,15,0" Name="fiveEnemiesEnabled"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
+                    <Label Content="Magic Find" HorizontalAlignment="Left" Margin="0,0,5,0" Name="magicFindCB" Width="70" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding MagicFindEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0" Name="magicFindEnabled"/>
+                    <Label Content="Barricade" HorizontalAlignment="Left" Margin="0,0,5,0" Name="barricadeCB" Width="85" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding BarricadeEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,15,0" Name="barricadeEnabled"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
+                    <Label Content="Chest" HorizontalAlignment="Left" Margin="0,0,5,0" Name="chestCB" Width="70" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding ChestEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,55,0" Name="chestEnabled"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
+                    <Label Content="Ignore Ele Status when Immune" HorizontalAlignment="Left" Margin="0,0,5,0" Name="immune" Width="200" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding ImmuneEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,29,0" Name="immuneEnabled"/>
+
+                </StackPanel>
+            </StackPanel>
+            <Rectangle Width="2" Fill="Gray"/>
+            <StackPanel Width="229" >
+                <Label Content="Priority" Foreground="White" Margin="0,3,0,3" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15" />
+                <Rectangle Height="2" Fill="Gray"/>
+                <ListBox Height="320" x:Name="priorityList" Width="120" Margin="5"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
+                    <Button Content="Increase"  Name="Increase" Width="60" Command="{Binding Path=increasePriority}" Margin="2" HorizontalContentAlignment="Center"/>
+                    <Button Content="Decrease" Name="Decrease" Width="60" Command="{Binding Path=decreasePriority}" Margin="2" HorizontalContentAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
