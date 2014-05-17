@@ -1,0 +1,11 @@
+<!-- This is a automaticly generated profile by YetAnotherRelogger
+It is used to ensure a profile starts without causing DB to choken it -->
+<Profile>
+  <Name>YAR Profile Kickstart: </Name>
+  <KillMonsters>True</KillMonsters>
+  <PickupLoot>True</PickupLoot>
+  <GameParams act="OpenWorld" resumeFromSave="False" isPrivate="True" numGames="-1" />
+    <Order>
+      <LoadProfile profile="G:\Demonbuddy\Script\zBounty\Acts\A4\Diablo.xml" />
+    </Order>
+</Profile>

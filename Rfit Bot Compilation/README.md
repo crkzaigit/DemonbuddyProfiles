@@ -8,7 +8,8 @@
 5. 在Plugins（插件）选项卡内，激活QuestTools、 Trinity、GearSwap。
 6. 退出DB
 7. 删除DB目录下的CompiledAssemblies文件夹
-8.重新启动Demonbuddy.exe
+8. 重新启动Demonbuddy.exe
+
 
 Triniry设置：(请参照设置截图)
 =====================
