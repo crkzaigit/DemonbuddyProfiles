@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Demonbuddy;
+using Trinity.Cache;
 using Trinity.Config.Loot;
 using Trinity.Helpers;
 using Trinity.ItemRules;
@@ -17,7 +17,7 @@ using Zeta.Game.Internals;
 using Zeta.Game.Internals.Actors;
 using Logger = Trinity.Technicals.Logger;
 
-namespace Trinity
+namespace Trinity.Items
 {
     public class TrinityItemManager : ItemManager
     {
@@ -63,7 +63,10 @@ namespace Trinity
 
         public override bool ShouldSalvageItem(ACDItem item)
         {
-            return ShouldSalvageItem(item, ItemEvaluationType.Salvage);
+            bool action = ShouldSalvageItem(item, ItemEvaluationType.Salvage);
+            if (action)
+                ItemStashSellAppender.Instance.AppendItem(CachedACDItem.GetCachedItem(item), "Salvage");
+            return action;
         }
 
         public bool ShouldSalvageItem(ACDItem item, ItemEvaluationType evaluationType)
@@ -86,7 +89,10 @@ namespace Trinity
 
         public override bool ShouldSellItem(ACDItem item)
         {
-            return ShouldSellItem(item, ItemEvaluationType.Sell);
+            bool action = ShouldSellItem(item, ItemEvaluationType.Sell);
+            if (action)
+                ItemStashSellAppender.Instance.AppendItem(CachedACDItem.GetCachedItem(item), "Sell");
+            return action;
         }
 
         public bool ShouldSellItem(ACDItem item, ItemEvaluationType evaluationType)
@@ -111,7 +117,10 @@ namespace Trinity
 
         public override bool ShouldStashItem(ACDItem item)
         {
-            return ShouldStashItem(item, ItemEvaluationType.Keep);
+            bool action = ShouldStashItem(item, ItemEvaluationType.Keep);
+            if (action)
+                ItemStashSellAppender.Instance.AppendItem(CachedACDItem.GetCachedItem(item), "Stash");
+            return action;
         }
 
         public bool ShouldStashItem(ACDItem item, ItemEvaluationType evaluationType)
@@ -127,7 +136,7 @@ namespace Trinity
 
             if (Trinity.Settings.Loot.ItemFilterMode == ItemFilterMode.DemonBuddy)
             {
-                return ItemManager.Current.ShouldStashItem(item);
+                return Current.ShouldStashItem(item);
             }
 
             CachedACDItem cItem = CachedACDItem.GetCachedItem(item);
@@ -187,6 +196,7 @@ namespace Trinity
                     Logger.Log(TrinityLogLevel.Info, LogCategory.UserInformation, "{0} [{1}] [{2}] = (autokeep infernal key)", cItem.RealName, cItem.InternalName, tItemType);
                 return true;
             }
+
             if (tItemType == GItemType.HealthPotion)
             {
                 if (evaluationType == ItemEvaluationType.Keep)
@@ -309,7 +319,12 @@ namespace Trinity
             }
         }
 
-        private bool TrinitySalvage(ACDItem item)
+        /// <summary>
+        /// Determines if we should salvage an item
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private static bool TrinitySalvage(ACDItem item)
         {
             CachedACDItem cItem = CachedACDItem.GetCachedItem(item);
 
@@ -334,7 +349,7 @@ namespace Trinity
             if (Trinity.Settings.Loot.TownRun.StashBlues && cItem.Quality > ItemQuality.Superior && cItem.Quality < ItemQuality.Rare4)
                 return false;
 
-            if (cItem.Quality >= ItemQuality.Legendary && salvageOption == SalvageOption.InfernoOnly && cItem.Level >= 60)
+            if (cItem.Quality >= ItemQuality.Legendary && salvageOption == SalvageOption.Salvage)
                 return true;
 
             switch (trinityItemBaseType)
@@ -344,11 +359,11 @@ namespace Trinity
                 case GItemBaseType.WeaponTwoHand:
                 case GItemBaseType.Armor:
                 case GItemBaseType.Offhand:
-                    return ((cItem.Level >= 61 && salvageOption == SalvageOption.InfernoOnly) || salvageOption == SalvageOption.All);
+                    return salvageOption == SalvageOption.Salvage;
                 case GItemBaseType.Jewelry:
-                    return ((cItem.Level >= 59 && salvageOption == SalvageOption.InfernoOnly) || salvageOption == SalvageOption.All);
+                    return salvageOption == SalvageOption.Salvage;
                 case GItemBaseType.FollowerItem:
-                    return ((cItem.Level >= 60 && salvageOption == SalvageOption.InfernoOnly) || salvageOption == SalvageOption.All);
+                    return salvageOption == SalvageOption.Salvage;
                 case GItemBaseType.Gem:
                 case GItemBaseType.Misc:
                 case GItemBaseType.Unknown:
@@ -358,7 +373,12 @@ namespace Trinity
             }
         }
 
-        private bool TrinitySell(ACDItem item)
+        /// <summary>
+        /// Determines if we should Sell an Item
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private static bool TrinitySell(ACDItem item)
         {
             CachedACDItem cItem = CachedACDItem.GetCachedItem(item);
 
@@ -378,6 +398,35 @@ namespace Trinity
                     return true;
                 case GItemBaseType.Gem:
                 case GItemBaseType.Misc:
+                    if (cItem.TrinityItemType == GItemType.HealthPotion && Trinity.Settings.Loot.TownRun.SellExtraPotions)
+                    {
+                        // Never sell our precious legendary potions!
+                        if (cItem.AcdItem.ItemQualityLevel >= ItemQuality.Legendary)
+                            return false;
+
+                        bool hasLegendaryPotion = ZetaDia.Me.Inventory.Backpack.Any(i => i.ItemType == ItemType.Potion && i.ItemQualityLevel >= ItemQuality.Legendary);
+
+                        // If we have a legendary potion, sell regular potions
+                        if (hasLegendaryPotion && cItem.AcdItem.ItemQualityLevel <= ItemQuality.Legendary)
+                            return true;
+
+                        // If we have more than 1 stack of potions
+                        // Keep the largest stack until we only have 1 stack
+                        int potionStacks = ZetaDia.Me.Inventory.Backpack.Count(i => i.ItemType == ItemType.Potion);
+                        if (potionStacks > 1)
+                        {
+                            // Keep only the highest stack
+                            ACDItem acdItem = ZetaDia.Me.Inventory.Backpack
+                                .Where(i => i.ItemType == ItemType.Potion && i.ItemQualityLevel == ItemQuality.Normal)
+                                .OrderBy(i => i.ItemStackQuantity)
+                                .FirstOrDefault();
+
+                            if (acdItem != null && cItem.AcdItem.ACDGuid == acdItem.ACDGuid)
+                            {
+                                return true;
+                            }
+                        }
+                    }
                     if (cItem.TrinityItemType == GItemType.CraftingPlan)
                         return true;
                     return false;
@@ -388,11 +437,11 @@ namespace Trinity
             return false;
         }
 
-        private SalvageOption GetSalvageOption(ItemQuality quality)
+        private static SalvageOption GetSalvageOption(ItemQuality quality)
         {
-            if (quality < ItemQuality.Magic1)
+            if (quality > ItemQuality.Normal && quality <= ItemQuality.Superior)
             {
-                return SalvageOption.All;
+                return Trinity.Settings.Loot.TownRun.SalvageWhiteItemOption;
             }
 
             if (quality >= ItemQuality.Magic1 && quality <= ItemQuality.Magic3)
@@ -407,7 +456,7 @@ namespace Trinity
             {
                 return Trinity.Settings.Loot.TownRun.SalvageLegendaryItemOption;
             }
-            return SalvageOption.None;
+            return SalvageOption.Sell;
         }
 
         public enum DumpItemLocation
@@ -454,7 +503,7 @@ namespace Trinity
                         itemList = ZetaDia.Me.Inventory.MerchantItems.ToList();
                         break;
                     case DumpItemLocation.Ground:
-                        itemList = ZetaDia.Actors.GetActorsOfType<DiaItem>(true, false).Select(i => i.CommonData).ToList();
+                        itemList = ZetaDia.Actors.GetActorsOfType<DiaItem>(true).Select(i => i.CommonData).ToList();
                         break;
                     case DumpItemLocation.Equipped:
                         itemList = ZetaDia.Me.Inventory.Equipped.ToList();
@@ -527,7 +576,7 @@ namespace Trinity
 
                     try
                     {
-                        PrintObjectProperties<ACDItem>(item);
+                        PrintObjectProperties(item);
                     }
                     catch (Exception ex)
                     {
@@ -549,7 +598,7 @@ namespace Trinity
                     object val = property.GetValue(item, null);
                     if (val != null)
                     {
-                        Logger.Log(typeof(T).Name + "." + property.Name + "=" + val.ToString());
+                        Logger.Log(typeof(T).Name + "." + property.Name + "=" + val);
 
                         // Special cases!
                         if (property.Name == "ValidInventorySlots")
@@ -573,6 +622,14 @@ namespace Trinity
         private static int _lastProtectedSlotsCount;
         private static Vector2 _lastBackPackLocation = new Vector2(-2, -2);
 
+        internal static void ResetBackPackCheck()
+        {
+            _lastBackPackCount = -1;
+            _lastProtectedSlotsCount = -1;
+            _lastBackPackLocation = new Vector2(-2, -2);
+            TownRun.LastCheckBackpackDurability = DateTime.MinValue;
+        }
+
         /// <summary>
         /// Search backpack to see if we have room for a 2-slot item anywhere
         /// </summary>
@@ -591,7 +648,7 @@ namespace Trinity
                         return _lastBackPackLocation;
                     }
 
-                    bool[,] BackpackSlotBlocked = new bool[10, 6];
+                    bool[,] backpackSlotBlocked = new bool[10, 6];
 
                     int freeBagSlots = 60;
 
@@ -601,7 +658,7 @@ namespace Trinity
                     // Block off the entire of any "protected bag slots"
                     foreach (InventorySquare square in CharacterSettings.Instance.ProtectedBagSlots)
                     {
-                        BackpackSlotBlocked[square.Column, square.Row] = true;
+                        backpackSlotBlocked[square.Column, square.Row] = true;
                         freeBagSlots--;
                     }
 
@@ -615,9 +672,9 @@ namespace Trinity
                         int col = item.InventoryColumn;
 
                         // Slot is already protected, don't double count
-                        if (!BackpackSlotBlocked[col, row])
+                        if (!backpackSlotBlocked[col, row])
                         {
-                            BackpackSlotBlocked[col, row] = true;
+                            backpackSlotBlocked[col, row] = true;
                             freeBagSlots--;
                         }
 
@@ -625,11 +682,11 @@ namespace Trinity
                             continue;
 
                         // Slot is already protected, don't double count
-                        if (BackpackSlotBlocked[col, row + 1])
+                        if (backpackSlotBlocked[col, row + 1])
                             continue;
 
                         freeBagSlots--;
-                        BackpackSlotBlocked[col, row + 1] = true;
+                        backpackSlotBlocked[col, row + 1] = true;
                     }
 
                     bool noFreeSlots = freeBagSlots < 1;
@@ -656,7 +713,7 @@ namespace Trinity
                         for (int row = 0; row <= 5; row++)
                         {
                             // Slot is blocked, skip
-                            if (BackpackSlotBlocked[col, row])
+                            if (backpackSlotBlocked[col, row])
                                 continue;
 
                             // Not a two slotitem, slot not blocked, use it!
@@ -671,7 +728,7 @@ namespace Trinity
                                 continue;
 
                             // Is a Two Slot, check row below
-                            if (BackpackSlotBlocked[col, row + 1])
+                            if (backpackSlotBlocked[col, row + 1])
                                 continue;
 
                             _lastBackPackLocation = new Vector2(col, row);

@@ -9,6 +9,7 @@ namespace Trinity.Cache
 {
     public class ItemDroppedAppender : IDisposable
     {
+        bool _headerChecked;
         public ItemDroppedAppender()
         {
             _logItemQueue = new ConcurrentQueue<string>();
@@ -29,12 +30,16 @@ namespace Trinity.Cache
 
         private void CheckHeader()
         {
+            if (_headerChecked)
+                return;
+
             bool writeHeader = !File.Exists(_droppedItemLogPath);
 
             if (writeHeader)
             {
                 _logItemQueue.Enqueue("ActorSNO,GameBalanceID,Name,InternalName,DBBaseType,DBItemType,TBaseType,TItemType,Quality,Level,Pickup\n");
             }
+            _headerChecked = true;
         }
         public void Dispose()
         {
