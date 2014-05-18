@@ -16,6 +16,43 @@ Triniry设置：
 
 请参照设置截图文件夹内的图片
 
+
+脚本使用：
+=====================
+
+**Rift Bot Common**
+
+杀王，结束。
+
+找到回城石，结束。
+
+若在第一层找到回城石，则逛完第一层。
+
+
+**Rift Bot Explore**
+
+杀王，结束。
+
+找到回城石，则逛完这一次层（最后一层）。
+
+
+**Rift Bot Full**
+
+找到回城石，结束。
+
+无视王杀没杀。
+
+
+**Rift Bot Common/Explore/Full with Bounties**
+
+带A4箱子的版本....千万别用这个。
+
+
+**Rift Bot Rift Bot A4 Bounties Only**
+
+刷A4箱子...这个也没用
+
+
 注意事项
 =====================
 必须的运行库：
