@@ -1,6 +1,7 @@
 <Profile>
-
-<Name>Essence of Twin Seas Farm By GeekLien.</Name>
+<Name>Essence of Twin Seas Farm By GeekLien. v0.1</Name>
+	<!-- this a mod of  Adventure Mode Bounties - Community Edition  -->
+    <!-- thx them   -->
 <KillMonsters>True</KillMonsters>
 <PickupLoot>true</PickupLoot>
 <GameParams act="OpenWorld" resumeFromSave="False" isPrivate="True" numGames="-1" />
