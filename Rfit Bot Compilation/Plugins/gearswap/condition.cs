@@ -5,52 +5,52 @@ using System.Text;
 
 namespace GearSwap
 {
-    class condition
+    class Condition
     {
         private string cond { get; set; }
         private bool status { get; set; }
         private bool inUse { get; set; }
 
-        public condition(string newCond)
+        public Condition(string newCond)
         {
             cond = newCond;
             status = false;
             inUse = false;
         }
 
-        public void setTrue()
+        public void SetTrue()
         {
             status = true;
         }
 
-        public void setFalse()
+        public void SetFalse()
         {
             status = false;
         }
-        public void setInUseTrue()
+        public void SetInUseTrue()
         {
             inUse = true;
         }
 
-        public void setInUseFalse()
+        public void SetInUseFalse()
         {
             inUse = false;
         }
 
-        public string getName()
+        public string GetName()
         {
             return cond;
         }
 
-        public bool getStatus()
+        public bool GetStatus()
         {
             return status;
         }
-        public bool getInUse()
+        public bool GetInUse()
         {
             return inUse;
         }
-        public void setName(string n)
+        public void SetName(string n)
         {
             cond = n;
         }

@@ -26,7 +26,10 @@ namespace GearSwap
         private bool loggingEnabled;
         private int lowHealthPerc;
         private int magicFindPerc;
+        private int shiMizuPerc;
         private double barricadeDistance;
+        private double lowHealthDuration;
+        private double pulseInterval;
         private bool coldEnabled;
         private bool fireEnabled;
         private bool arcaneEnabled;
@@ -44,6 +47,8 @@ namespace GearSwap
         private bool immuneEnabled;
         private bool debugLoggingEnabled;
         private bool chestEnabled;
+        private bool puzzleRingEnabled;
+        private bool shiMizuEnabled;
        
 
         private static string _battleTagName;
@@ -60,9 +65,10 @@ namespace GearSwap
         public GearSwapSettings() :
             base(Path.Combine(SettingsDirectory, "GearSwap", BattleTagName, "GearSwapSettings.xml"))
         {
-            dumpActorSNO = new RelayCommand((parameter) => { gearSwap.dumpActorSNO(); });
-            increasePriority = new RelayCommand((parameter) => { gearSwap.increasePriority(); });
-            decreasePriority = new RelayCommand((parameter) => { gearSwap.decreasePriority(); });
+            DumpActorSNO = new RelayCommand((parameter) => { Helpers.DumpActorSNO(); });
+            IncreasePriority = new RelayCommand((parameter) => { ConfigHelpers.IncreasePriority(); });
+            DecreasePriority = new RelayCommand((parameter) => { ConfigHelpers.DecreasePriority(); });
+            ResetDefaults = new RelayCommand((parameter) => { ConfigHelpers.ResetDefaults(); });
         }
 
         public static GearSwapSettings Instance
@@ -130,6 +136,21 @@ namespace GearSwap
             {
                 magicFindPerc = value;
                 OnPropertyChanged("MagicFindPerc");
+            }
+        }
+        [XmlElement("ShiMizuPerc")]
+        [DefaultValue(25)]
+        [Setting]
+        public int ShiMizuPerc
+        {
+            get
+            {
+                return shiMizuPerc;
+            }
+            set
+            {
+                shiMizuPerc = value;
+                OnPropertyChanged("ShiMizuPerc");
             }
         }
         [XmlElement("ColdEnabled")]
@@ -391,20 +412,85 @@ namespace GearSwap
             }
         }
 
+        [XmlElement("LowHealthDuration")]
+        [DefaultValue(4)]
+        [Setting]
+        public double LowHealthDuration
+        {
+            get
+            {
+                return lowHealthDuration;
+            }
+            set
+            {
+                lowHealthDuration = value;
+                OnPropertyChanged("LowHealthDuration");
+            }
+        }
 
-        public static ICommand dumpActorSNO
+        [XmlElement("PuzzleRingEnabled")]
+        [DefaultValue(true)]
+        [Setting]
+        public bool PuzzleRingEnabled
+        {
+            get
+            {
+                return puzzleRingEnabled;
+            }
+            set
+            {
+                puzzleRingEnabled = value;
+                OnPropertyChanged("PuzzleRingEnabled");
+            }
+        }
+        [XmlElement("ShiMizuEnabled")]
+        [DefaultValue(true)]
+        [Setting]
+        public bool ShiMizuEnabled
+        {
+            get
+            {
+                return shiMizuEnabled;
+            }
+            set
+            {
+                shiMizuEnabled = value;
+                OnPropertyChanged("ShiMizuEnabled");
+            }
+        }
+        [XmlElement("PulseInterval")]
+        [DefaultValue(.5)]
+        [Setting]
+        public double PulseInterval
+        {
+            get
+            {
+                return pulseInterval;
+            }
+            set
+            {
+                pulseInterval = value;
+                OnPropertyChanged("PulseInterval");
+            }
+        }
+        public static ICommand DumpActorSNO
         {
             get;
             private set;
         }
 
-        public static ICommand increasePriority
+        public static ICommand IncreasePriority
         {
             get;
             private set;
         }
 
-        public static ICommand decreasePriority
+        public static ICommand DecreasePriority
+        {
+            get;
+            private set;
+        }
+        public static ICommand ResetDefaults
         {
             get;
             private set;

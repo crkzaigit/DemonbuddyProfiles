@@ -498,6 +498,7 @@ namespace Trinity.DbProvider
                 }
 
                 // Leap movement for a barb
+				/*
                 if (Trinity.Settings.Combat.Barbarian.UseLeapOOC && Trinity.Hotbar.Contains(SNOPower.Barbarian_Leap) &&
                     PowerManager.CanCast(SNOPower.Barbarian_Leap) && !ShrinesInArea(vMoveToTarget))
                 {
@@ -510,6 +511,7 @@ namespace Trinity.DbProvider
                         Logger.Log(TrinityLogLevel.Debug, LogCategory.Movement, "Using Leap for OOC movement, distance={0}", destinationDistance);
                     return;
                 }
+				*/
                 // Furious Charge movement for a barb
                 if (Trinity.Settings.Combat.Barbarian.UseChargeOOC && Trinity.Hotbar.Contains(SNOPower.Barbarian_FuriousCharge) && !bTooMuchZChange &&
                     destinationDistance >= 20f &&

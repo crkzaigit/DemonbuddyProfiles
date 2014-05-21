@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Trinity.Config;
 using Trinity.Config.Combat;
 using Trinity.Config.Loot;
 using Trinity.Helpers;
+using Trinity.Items;
 using Trinity.Technicals;
 using Trinity.UIComponents;
 using Zeta.Bot;
@@ -30,6 +32,12 @@ namespace Trinity.UI.UIComponents
                 return false;
             }
         }
+
+        internal static Grid MainWindowGrid()
+        {
+            return (System.Windows.Application.Current.MainWindow.Content as Grid);
+        }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfigViewModel" /> class.
@@ -915,6 +923,7 @@ namespace Trinity.UI.UIComponents
         {
             try
             {
+                _Model.Loot.ItemFilterMode = ItemFilterMode.TrinityOnly;
                 _Model.Loot.Pickup.ArmorBlueLevel = 1;
                 _Model.Loot.Pickup.ArmorYellowLevel = 1;
                 _Model.Loot.Pickup.WeaponBlueLevel = 1;
@@ -922,7 +931,7 @@ namespace Trinity.UI.UIComponents
                 _Model.Loot.Pickup.JewelryBlueLevel = 1;
                 _Model.Loot.Pickup.JewelryYellowLevel = 1;
                 _Model.Loot.Pickup.LegendaryLevel = 1;
-                _Model.Loot.Pickup.GemLevel = 0;
+                _Model.Loot.Pickup.GemLevel = 15;
                 _Model.Loot.Pickup.GemType = TrinityGemType.All;
                 _Model.Loot.Pickup.PickupBlueFollowerItems = false;
                 _Model.Loot.Pickup.PickupYellowFollowerItems = true;
@@ -946,7 +955,6 @@ namespace Trinity.UI.UIComponents
             try
             {
                 _Model.Loot.ItemFilterMode = ItemFilterMode.TrinityOnly;
-                _Model.Loot.ItemRules.ItemRuleType = ItemRuleType.Hard;
                 _Model.Loot.Pickup.ArmorBlueLevel = 0;
                 _Model.Loot.Pickup.ArmorYellowLevel = 0;
                 _Model.Loot.Pickup.WeaponBlueLevel = 0;

@@ -5,6 +5,7 @@ using System.Windows;
 using Trinity.Cache;
 using Trinity.DbProvider;
 using Trinity.Helpers;
+using Trinity.Items;
 using Trinity.Technicals;
 using Zeta.Bot;
 using Zeta.Bot.Navigation;
@@ -22,7 +23,7 @@ namespace Trinity
         {
             get
             {
-                return new Version(1, 9, 5);
+                return new Version(1, 9, 7);
             }
         }
 
@@ -141,7 +142,6 @@ namespace Trinity
                 {
                     PluginCheck.Start();
 
-                    HasMappedPlayerAbilities = false;
                     _isPluginEnabled = true;
 
                     // Settings are available after this... 

@@ -54,7 +54,7 @@ namespace GearSwap
             UserControl mainControl = (UserControl)XamlReader.Load(new MemoryStream(Encoding.UTF8.GetBytes(xamlContent)));
             configWindow.Content = mainControl;
             configWindow.Width = 460;
-            configWindow.Height = 500;
+            configWindow.Height = 650;
             configWindow.ResizeMode = ResizeMode.NoResize;
             configWindow.Background = Brushes.DarkGray;
             configWindow.Title = "GearSwap";
@@ -63,14 +63,14 @@ namespace GearSwap
             Demonbuddy.App.Current.Exit += ConfigWindow_Closed;
 
             priority = LogicalTreeHelper.FindLogicalNode(mainControl, "priorityList") as ListBox;
-            gearSwap.populatePriorityList();
+            ConfigHelpers.PopulatePriorityList();
             return configWindow;
         }
 
         static void ConfigWindow_Closed(object sender, System.EventArgs e)
         {
             GearSwapSettings.Instance.Save();
-            gearSwap.updateSettings();
+            Plugin.updateSettings();
             if (configWindow != null)
             {
                 configWindow.Closed -= ConfigWindow_Closed;

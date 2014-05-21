@@ -8,7 +8,7 @@ using Zeta.Game;
 
 namespace GearSwap
 {
-    class gear
+    class Gear
     {
         private string condition { get; set; }
         private int actorId { get; set; }
@@ -17,7 +17,7 @@ namespace GearSwap
         private bool flagToReplace { get; set; }
         private string itemName { get; set; }
 
-        public gear(string newCond, int id, InventorySlot islot)
+        public Gear(string newCond, int id, InventorySlot islot)
         {
             condition = newCond;
             actorId = id;
@@ -27,7 +27,7 @@ namespace GearSwap
             flagToReplace = false;
         }
 
-        public gear(string newCond, int id, InventorySlot islot, string name)
+        public Gear(string newCond, int id, InventorySlot islot, string name)
         {
             condition = newCond;
             actorId = id;
@@ -36,88 +36,88 @@ namespace GearSwap
             dynamicId = -999;
             flagToReplace = false;
         }
-        public gear(gear item)
+        public Gear(Gear item)
         {
-            condition = item.getCondition();
-            actorId = item.getActorId();
-            slot = item.getInvSlot();
-            itemName = item.getName();
+            condition = item.GetCondition();
+            actorId = item.GetActorId();
+            slot = item.GetInvSlot();
+            itemName = item.GetName();
             dynamicId = -999;
             flagToReplace = false;
         }
-        public gear(gear item, int newId)
+        public Gear(Gear item, int newId)
         {
-            condition = item.getCondition();
+            condition = item.GetCondition();
             actorId = newId;
-            slot = item.getInvSlot();
-            itemName = item.getName();
+            slot = item.GetInvSlot();
+            itemName = item.GetName();
             dynamicId = -999;
             flagToReplace = false;
         }
-        public gear(gear item, int newId, string name)
+        public Gear(Gear item, int newId, string name)
         {
-            condition = item.getCondition();
+            condition = item.GetCondition();
             actorId = newId;
-            slot = item.getInvSlot();
+            slot = item.GetInvSlot();
             itemName = name;
             dynamicId = -999;
             flagToReplace = false;
         }
 
-        public void setName(string name)
+        public void SetName(string name)
         {
             itemName = name;
         }
 
-        public string getName()
+        public string GetName()
         {
             return itemName;
         }
 
-        public string display()
+        public string Display()
         {
             return "Item: " + actorId + " - " + slot + " - Condition: " + condition + " - ID: " + dynamicId;
         }
 
-        public void setCond(string cond)
+        public void SetCond(string cond)
         {
             condition = cond;
         }
 
-        public int getActorId()
+        public int GetActorId()
         {
             return actorId;
         }
 
-        public InventorySlot getInvSlot()
+        public InventorySlot GetInvSlot()
         {
             return slot;
         }
 
-        public string getCondition()
+        public string GetCondition()
         {
             return condition;
         }
 
-        public int getDynamicId()
+        public int GetDynamicId()
         {
             return dynamicId;
         }
 
-        public void setDynamicId(int dynId)
+        public void SetDynamicId(int dynId)
         {
             dynamicId = dynId;
         }
 
-        public void setFlagFalse()
+        public void SetFlagFalse()
         {
             flagToReplace = false;
         }
-        public void setFlagTrue()
+        public void SetFlagTrue()
         {
             flagToReplace = true;
         }
-        public bool getFlag()
+        public bool GetFlag()
         {
             return flagToReplace;
         }

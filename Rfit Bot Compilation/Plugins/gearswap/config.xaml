@@ -3,7 +3,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="460" Background="Black" Foreground="White">
+             d:DesignHeight="800" d:DesignWidth="460" Background="Black" Foreground="White">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="375*" />
@@ -14,22 +14,38 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="229">
-                <Button Content="Dump ActorSNO" HorizontalAlignment="Center" Name="dumpActorSNO" Width="100" Command="{Binding Path=dumpActorSNO}" Margin="10"/>
+                <Button Content="Dump ActorSNO" HorizontalAlignment="Center" Name="dumpActorSNO" Width="100" Command="{Binding Path=DumpActorSNO}" Margin="10"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Foreground="White"  Content="Pulse Interval:" Margin="0" HorizontalAlignment="Right" Width="130"/>
+                    <TextBox Width="30" HorizontalAlignment="Left" Margin="0" Name="pulseIntervalValue"  Text="{Binding Path=PulseInterval}" IsReadOnly="True" />
+                </StackPanel>
+                <Slider Name="pulseInterval" Maximum="5" Minimum=".25" SmallChange=".25" LargeChange="1" TickFrequency=".25" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding Path=PulseInterval}" Margin="30,0,30,0" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                     <Label Foreground="White"  Content="Low Health %:" Margin="0" HorizontalAlignment="Right" Width="130"/>
-                    <TextBox Width="25" HorizontalAlignment="Left" Margin="0" Name="lowHealthValue"  Text="{Binding Path=LowHealthPerc}" IsReadOnly="True" />
+                    <TextBox Width="30" HorizontalAlignment="Left" Margin="0" Name="lowHealthValue"  Text="{Binding Path=LowHealthPerc}" IsReadOnly="True" />
                 </StackPanel>
                 <Slider Name="lowHealth" Maximum="100" Minimum="5" SmallChange="1" LargeChange="5" TickFrequency="5" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding Path=LowHealthPerc}" Margin="30,0,30,0" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                     <Label Foreground="White"  Content="Magic Find %:" Margin="0" HorizontalAlignment="Right" Width="130"/>
-                    <TextBox HorizontalAlignment="Left" Margin="0" Name="MagicFindValue" Width="25" Text="{Binding Path=MagicFindPerc}" IsReadOnly="True" />
+                    <TextBox HorizontalAlignment="Left" Margin="0" Name="MagicFindValue" Width="30" Text="{Binding Path=MagicFindPerc}" IsReadOnly="True" />
                 </StackPanel>
                 <Slider Name="magicFind" Maximum="100" Minimum="5" SmallChange="1" LargeChange="5" TickFrequency="5" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding Path=MagicFindPerc}" Margin="30,0,30,0" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Label Foreground="White"  Content="Shi Mizu's Hoari %:" Margin="0" HorizontalAlignment="Right" Width="130"/>
+                    <TextBox HorizontalAlignment="Left" Margin="0" Name="ShiMizuValue" Width="30" Text="{Binding Path=ShiMizuPerc}" IsReadOnly="True" />
+                </StackPanel>
+                <Slider Name="shiMizu" Maximum="25" Minimum="20" SmallChange="1" LargeChange="1" TickFrequency="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding Path=ShiMizuPerc}" Margin="30,0,30,0" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
                     <Label Foreground="White"  Content="Barricade Distance:" Margin="0" HorizontalAlignment="Right" Width="130"/>
                     <TextBox HorizontalAlignment="Left" Margin="0" Name="barricadeDistance" Width="30" Text="{Binding Path=BarricadeDistance}" IsReadOnly="True" />
                 </StackPanel>
                 <Slider Name="barricade" Maximum="25" Minimum="1" SmallChange=".5" LargeChange="5" TickFrequency=".5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding Path=BarricadeDistance}" Margin="30,0,30,0" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Label Foreground="White"  Content="Low Health Duration:" Margin="0" HorizontalAlignment="Right" Width="130"/>
+                    <TextBox HorizontalAlignment="Left" Margin="0" Name="lowHealthDuration" Width="30" Text="{Binding Path=LowHealthDuration}" IsReadOnly="True" />
+                </StackPanel>
+                <Slider Name="lowHealthDurationSlider" Maximum="8" Minimum="0" SmallChange=".5" LargeChange="5" TickFrequency=".5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding Path=LowHealthDuration}" Margin="30,0,30,0" />
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                     <Label Content="Enable Logging" HorizontalAlignment="Left" Margin="0,0,5,0" Name="logging" Width="130" Foreground="White" HorizontalContentAlignment="Right" FlowDirection="LeftToRight" />
                     <CheckBox HorizontalAlignment="Left" IsChecked="{Binding LoggingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,60,0" Name="loggingEnabled"/>
@@ -85,8 +101,15 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
                     <Label Content="Chest" HorizontalAlignment="Left" Margin="0,0,5,0" Name="chestCB" Width="70" Foreground="White" HorizontalContentAlignment="Right"/>
-                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding ChestEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,55,0" Name="chestEnabled"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding ChestEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0" Name="chestEnabled"/>
+                    <Label Content="Puzzle Ring" HorizontalAlignment="Left" Margin="0,0,5,0" Name="puzzleRing" Width="85" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding PuzzleRingEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,15,0" Name="puzzleRingEnabled"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
+                    <Label Content="Shi Mizu's Hoari" HorizontalAlignment="Left" Margin="0,0,5,0" Name="shiMizuCB" Width="95" Foreground="White" HorizontalContentAlignment="Right"/>
+                    <CheckBox HorizontalAlignment="Left" IsChecked="{Binding ShiMizuEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0" Name="shiMizuEnabled"/>
+                </StackPanel>
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
                     <Label Content="Ignore Ele Status when Immune" HorizontalAlignment="Left" Margin="0,0,5,0" Name="immune" Width="200" Foreground="White" HorizontalContentAlignment="Right"/>
                     <CheckBox HorizontalAlignment="Left" IsChecked="{Binding ImmuneEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,29,0" Name="immuneEnabled"/>
@@ -97,11 +120,12 @@
             <StackPanel Width="229" >
                 <Label Content="Priority" Foreground="White" Margin="0,3,0,3" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15" />
                 <Rectangle Height="2" Fill="Gray"/>
-                <ListBox Height="320" x:Name="priorityList" Width="120" Margin="5"/>
+                <ListBox Height="430" x:Name="priorityList" Width="120" Margin="5"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,0">
-                    <Button Content="Increase"  Name="Increase" Width="60" Command="{Binding Path=increasePriority}" Margin="2" HorizontalContentAlignment="Center"/>
-                    <Button Content="Decrease" Name="Decrease" Width="60" Command="{Binding Path=decreasePriority}" Margin="2" HorizontalContentAlignment="Center"/>
+                    <Button Content="Increase"  Name="Increase" Width="60" Command="{Binding Path=IncreasePriority}" Margin="2" HorizontalContentAlignment="Center"/>
+                    <Button Content="Decrease" Name="Decrease" Width="60" Command="{Binding Path=DecreasePriority}" Margin="2" HorizontalContentAlignment="Center"/>
                 </StackPanel>
+                <Button Content="Reset Defaults" Name="Reset" Width="90" Command="{Binding Path=ResetDefaults}" Margin="0,20,0,0"  HorizontalContentAlignment="Center"/>
             </StackPanel>
         </StackPanel>
     </Grid>

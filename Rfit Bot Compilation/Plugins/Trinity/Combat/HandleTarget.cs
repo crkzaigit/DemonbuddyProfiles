@@ -7,6 +7,7 @@ using Trinity.Combat.Abilities;
 using Trinity.Config.Combat;
 using Trinity.DbProvider;
 using Trinity.Helpers;
+using Trinity.Items;
 using Trinity.Technicals;
 using Zeta.Bot;
 using Zeta.Bot.Navigation;
@@ -1004,6 +1005,7 @@ namespace Trinity
                             NoAbilitiesAvailableInARow++;
                             if (DateTime.UtcNow.Subtract(lastRemindedAboutAbilities).TotalSeconds > 60 && NoAbilitiesAvailableInARow >= 4)
                             {
+                                ShouldRefreshHotbarAbilities = true;
                                 lastRemindedAboutAbilities = DateTime.UtcNow;
                                 Logger.Log(TrinityLogLevel.Error, LogCategory.Behavior, "Fatal Error: Couldn't find a valid attack ability. Not enough resource for any abilities or all on cooldown");
                                 Logger.Log(TrinityLogLevel.Error, LogCategory.Behavior, "If you get this message frequently, you should consider changing your build");
@@ -1408,13 +1410,14 @@ namespace Trinity
                     case GObjectType.Item:
                         {
                             TargetRangeRequired = 2f;
-
+                            TargetCurrentDistance = CurrentTarget.Distance;
                             break;
                         }
                     // * Gold - need to get within pickup radius only
                     case GObjectType.Gold:
                         {
                             TargetRangeRequired = 2f;
+                            TargetCurrentDistance = CurrentTarget.Distance;
                             CurrentDestination = MathEx.CalculatePointFrom(Player.Position, CurrentTarget.Position, -2f);
                             break;
                         }
@@ -1423,6 +1426,7 @@ namespace Trinity
                     case GObjectType.HealthGlobe:
                         {
                             TargetRangeRequired = 2f;
+                            TargetCurrentDistance = CurrentTarget.Distance;
                             break;
                         }
                     // * Shrine & Container - need to get within 8 feet and interact
