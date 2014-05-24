@@ -1,0 +1,5 @@
+1.需要杀掉佐敦库勒的进度。
+2.使用附件里的QuestTools覆盖原先的QuestTools。
+
+
+因为修改了QuestTools，所以最好别挂其他的脚本。

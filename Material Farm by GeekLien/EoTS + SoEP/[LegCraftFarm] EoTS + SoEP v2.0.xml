@@ -1,0 +1,102 @@
+<Profile>
+
+	<Name>[LegCraftFarm] EoTS + SoEP by Aminoacow (GeekLien mod @ 2014.05.24)</Name>
+	<KillMonsters>True</KillMonsters>
+	<PickupLoot>True</PickupLoot>
+	<GameParams quest="78264" step="9" act="A2" resumeFromSave="True" isPrivate="True" numGames="-1"  />
+	<KillMonsters>True</KillMonsters>
+	<PickupLoot>True</PickupLoot>
+	
+	<TargetBlacklists>
+		<TargetBlacklist actorId="108194"/>
+		<TargetBlacklist actorId="54272"/>
+	</TargetBlacklists>
+	
+	<Order>
+		<!-- Death allowance 3 -->
+		<MaxDeaths questId="1" max="3" />				
+		<ToggleTargeting questId="1" combat="True" looting="True" lootRadius="200" killRadius="200"/>		
+		
+		<!-- Teleport to Sewer -->
+		<If condition="CurrentLevelAreaId == 168314">
+            <TownRun minFreeBagSlots="10" minDurabilityPercent="15" />
+			<UseWaypoint questId="1" waypointNumber="1" />
+			<WaitTimer questId="1" stepId="1" waitTime="200"/>
+		</If>	
+		
+		<If condition="CurrentLevelAreaId == 19791">
+			<!-- Exploring the Sewer until one of the trigger is found or the Sewer is fully explored -->
+			<ExploreDungeon questId="1" stepId="1" until="ObjectFound" maxResets="-1" actorId="194383" objectDistance="40" pathPrecision="30" 
+                boxTolerance="0.3" boxSize="18" ignoreMarkers="True">
+				<AlternateActors>
+					<AlternateActor actorId="4893" objectDistance="40" interactRange="10"/>
+				</AlternateActors>
+				<IgnoreScenes>
+					<!-- Ignoring waypoints -->
+                    <!--
+					<IgnoreScene sceneId="31035" />
+					<IgnoreScene sceneId="31027" />
+                    -->
+					<!-- Ignoring unwanted dead ends and exits -->
+                    <!--
+					<IgnoreScene sceneId="31036" />
+					<IgnoreScene sceneId="31008" />
+					<IgnoreScene sceneId="174054" />
+					<IgnoreScene sceneId="174055" />
+					<IgnoreScene sceneId="174056" />
+					<IgnoreScene sceneId="174057" />
+                    -->
+                    
+                    <IgnoreScene sceneName="_W_" />
+                    <IgnoreScene sceneName="_E_" />
+                    <IgnoreScene sceneName="ExitToPrison" />
+                    <IgnoreScene sceneName="Entrance" />
+				</IgnoreScenes>
+			</ExploreDungeon>
+			
+			<!-- If it's Raziel -->
+            <If condition="ActorExistsAt(183306, ZetaDia.Me.Position.X, ZetaDia.Me.Position.Y, ZetaDia.Me.Position.Z, 150)">
+				<LogMessage questId="1" steId="1" output="------We have found the event trigger for [Shard of Entsteig Plate]!------"/>
+				<TalkTo questId="1" stepId="1" actorId="194383" />
+				<WaitTimer questId="1" stepId="1" waitTime="2500" />
+				<UseObject questId="1" stepId="1" actorId="183306" />
+				<!-- Wait for boss to spawn and loot to drop -->
+				<WaitTimer questId="1" stepId="1" waitTime="5000" />
+				
+				<!-- Offset movement to enable looting -->
+				<MoveToActor questId="1" stepId="1" actorId="183306" pathPrecision="2"/>
+				<OffsetMove questId="1" stepId="1" offsetX="-15" offsetY="-3" offsetZ="0" pathPrecision="2" />
+				<WaitTimer questId="1" stepId="1" waitTime="500" />
+				<OffsetMove questId="1" stepId="1" offsetX="15" offsetY="3" offsetZ="0" pathPrecision="2" />
+			</If>
+			
+			<!-- If it's Dreadshark -->
+            <If condition="ActorExistsAt(80447, ZetaDia.Me.Position.X, ZetaDia.Me.Position.Y, ZetaDia.Me.Position.Z, 150)">
+				<LogMessage questId="1" steId="1" output="------We have found the boss for [Essence of Twin Seas]!------"/>
+				<MoveToActor questId="1" stepId="1" actorId="80447" pathPrecision="10"/>
+				<!-- Wait for boss to spawn and loot to drop -->
+				<WaitTimer questId="1" stepId="1" waitTime="5000" />
+				
+				<!-- Offset movement to enable looting -->
+				<MoveToActor questId="1" stepId="1" actorId="80447" pathPrecision="2"/>
+				<OffsetMove questId="1" stepId="1" offsetX="15" offsetY="3" offsetZ="0" pathPrecision="2" />
+				<WaitTimer questId="1" stepId="1" waitTime="500" />
+				<OffsetMove questId="1" stepId="1" offsetX="-15" offsetY="-3" offsetZ="0" pathPrecision="2" />
+			</If>
+
+		</If>		
+		
+		<!-- Done -->
+		<ToggleTargeting questId="1" combat="True" looting="True" lootRadius="200" killRadius="20"/>
+		<TownPortal questId="1"/>
+				
+		<If condition="Me.IsInTown">
+			<!-- Clear bag before leaving the game if free bag slots is low -->
+			<If condition="(ZetaDia.Me.Inventory.NumFreeBackpackSlots &lt; 16)" >
+				<ForceTownRun questId="1" reason="Number of free bag slots less than 10"/> 
+			</If>
+			<LeaveGame reason="Run's been completed." />
+		</If>
+	</Order>
+
+</Profile>
