@@ -1,6 +1,6 @@
 <Profile>
 
-	<Name>[LegCraftFarm] EoTS + SoEP by Aminoacow (GeekLien mod @ 2014.05.24)</Name>
+	<Name>EoTS + SoEP by Aminoacow (Geeklien mod @ 2014.05.24)</Name>
 	<KillMonsters>True</KillMonsters>
 	<PickupLoot>True</PickupLoot>
 	<GameParams quest="78264" step="9" act="A2" resumeFromSave="True" isPrivate="True" numGames="-1"  />
