@@ -471,7 +471,7 @@ namespace GearSwap
         {
             try
             {
-                if (unit != null && unit.IsValid && unit.CommonData != null && unit.CommonData.IsValid && unit.ActorType == ActorType.Item && unit.CommonData.ItemQualityLevel == ItemQuality.Normal && (unit.CommonData.ItemBaseType == ItemBaseType.Armor || unit.CommonData.ItemBaseType == ItemBaseType.Jewelry || unit.CommonData.ItemBaseType == ItemBaseType.Weapon) && unit.Distance < 30f)
+                if (unit != null && unit.IsValid && unit.CommonData != null && unit.CommonData.IsValid && unit.ActorType == ActorType.Item && (unit.CommonData.ItemQualityLevel == ItemQuality.Normal || unit.CommonData.ItemQualityLevel == ItemQuality.Inferior) && (unit.CommonData.ItemBaseType == ItemBaseType.Armor || unit.CommonData.ItemBaseType == ItemBaseType.Jewelry || unit.CommonData.ItemBaseType == ItemBaseType.Weapon) && unit.Distance < 30f)
                 {
                     return true;
                 }

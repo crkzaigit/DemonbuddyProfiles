@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using Trinity.Config;
@@ -11,6 +12,7 @@ using Zeta.Common;
 using Zeta.Game;
 using Zeta.TreeSharp;
 using Logger = Trinity.Technicals.Logger;
+using Action = Zeta.TreeSharp.Action;
 
 namespace Trinity.Helpers
 {
@@ -19,6 +21,8 @@ namespace Trinity.Helpers
         private static TrinitySetting Settings { get { return Trinity.Settings; } }
 
         private static readonly Dictionary<string, Composite> OriginalHooks = new Dictionary<string, Composite>();
+
+        private static Composite _goldInactiveComposite;
 
         /// <summary>
         /// This will replace the main BehaviorTree hooks for Combat, Vendoring, and Looting.
@@ -40,12 +44,20 @@ namespace Trinity.Helpers
                 Composite lootComposite = TreeHooks.Instance.Hooks["Loot"][0];
                 StoreAndReplaceHook("Loot", Composites.CreateLootBehavior(lootComposite));
 
+                if (_goldInactiveComposite == null)
+                    _goldInactiveComposite = GoldInactivity.CreateGoldInactiveLeaveGame();
+
+                Logger.Log("Inserting GoldInactivity into BotBehavior");
+                TreeHooks.Instance.InsertHook("BotBehavior", 0, _goldInactiveComposite);
             }
             else
             {
                 ReplaceHookWithOriginal("Combat");
                 ReplaceHookWithOriginal("VendorRun");
                 ReplaceHookWithOriginal("Loot");
+
+                Logger.Log("Removing GoldInactivity from BotBehavior");
+                TreeHooks.Instance.RemoveHook("BotBehavior", _goldInactiveComposite);
             }
         }
 
@@ -54,6 +66,7 @@ namespace Trinity.Helpers
             if (!OriginalHooks.ContainsKey(hookName))
                 OriginalHooks.Add(hookName, TreeHooks.Instance.Hooks[hookName][0]);
 
+            Logger.Log("Replacing " + hookName + " Hook");
             TreeHooks.Instance.ReplaceHook(hookName, behavior);
         }
 
@@ -61,6 +74,7 @@ namespace Trinity.Helpers
         {
             if (OriginalHooks.ContainsKey(hook))
             {
+                Logger.Log("Replacing " + hook + " Hook with Original");
                 TreeHooks.Instance.ReplaceHook(hook, OriginalHooks[hook]);
             }
         }
@@ -76,8 +90,8 @@ namespace Trinity.Helpers
             }
             else
             {
-                //BotMain.TicksPerSecond = 10;
-                BotMain.TicksPerSecond = Int32.MaxValue;
+                BotMain.TicksPerSecond = 10;
+                //BotMain.TicksPerSecond = Int32.MaxValue;
                 Logger.Log(TrinityLogLevel.Verbose, LogCategory.UserInformation, "Reset bot TPS to default", Settings.Advanced.TPSLimit);
             }
         }

@@ -190,8 +190,8 @@ namespace Trinity
             MainGridProvider.Update();
             Navigator.Clear();
 
-            const float gridSquareSize = 3f;
-            const float maxDistance = 60f;
+            const float gridSquareSize = 10f;
+            const float maxDistance = 55f;
             const int maxWeight = 100;
 
             double gridSquareRadius = Math.Sqrt((Math.Pow(gridSquareSize / 2, 2) + Math.Pow(gridSquareSize / 2, 2)));

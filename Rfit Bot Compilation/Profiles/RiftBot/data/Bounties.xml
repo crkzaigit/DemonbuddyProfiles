@@ -6,46 +6,13 @@
 
 <TargetBlacklists>
 	<TargetBlacklist actorId="355635"/> <!-- Furnace -->
-	<TargetBlacklist actorId="103919"/> <!-- Demonic Vessels -->
-	<TargetBlacklist actorId="58317"/> <!-- Tool/Weapon Rack -->
-	<TargetBlacklist actorId="289794"/> <!-- X1_PandExt_ArmorRack-7385 -->
-	<TargetBlacklist actorId="212491"/> <!-- Pony Clouds -->
-	<TargetBlacklist actorId="289756"/> <!-- Armor Racks -->
-	<TargetBlacklist actorId="5758"/> <!-- some buged chest -->
-	<TargetBlacklist actorId="464"/> <!-- some buged chest -->
-	<TargetBlacklist actorId="357299"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorId="357297"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorId="357295"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorId="357306"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorId="357301"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorId="291743"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorId="362323"/> <!-- A buged NPC in A5 -->
 	<TargetBlacklist actorId="157531"/> <!-- Broken Watermill in Oasis -->
 	<TargetBlacklist actorId="170913"/> <!-- Broken door -->
-	<TargetBlacklist actorid="198012"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="223275"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="289763"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="341124"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="167520"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="192466"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="192463"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="167519"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="289244"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="289246"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="77354"/> <!-- Weapon Rack -->
-	<TargetBlacklist actorid="340114"/> <!-- Armor Rack -->
-	<TargetBlacklist actorid="340113"/> <!-- Armor Rack -->
-	<TargetBlacklist actorid="5671"/> <!-- Armor Rack -->
-	<TargetBlacklist actorid="15937"/> <!-- Armor Rack -->
-	<TargetBlacklist actorid="78030"/> <!-- Wilderness Scarecrow -->
 </TargetBlacklists>
 
 <Order>
 	<ToggleTargeting questId="312429" stepId="2" combat="True" looting="True" lootRadius="150" killRadius="80" />
-	<If condition="Me.IsInTown">   
-		<TownRun minFreeBagSlots="40"/>
-	</If>
-	
+
 	<!-- Kill Khatun, Kill Torchlighter, Kill Veshan the fierce, Kill the aspect of destruction-->
 	<If condition="HasQuest(349258) or HasQuest(349256) or HasQuest(349260) or HasQuest(357131)">
 		<While condition="CurrentWorldId != 109513">
@@ -54,9 +21,8 @@
 		</While>
 		<WaitTimer questId="1" stepId="2" waitTime="1000" />		
 		<ToggleTargeting questId="1" combat="True" killRadius="45" />
-		<If condition="ZetaDia.ActInfo.ActiveBounty">			
-			<ExploreDungeon stayAfterBounty="False" questId="1" stepId="2" until="BountyComplete" boxSize="20" boxTolerance="0.3" pathPrecision="40" />
-		</If>
+		<MoveToObjective questId="1" interactRange="20" pathPrecision="40" />
+		<ExploreDungeon stayAfterBounty="False" questId="1" stepId="2" until="BountyComplete" boxSize="20" boxTolerance="0.3" pathPrecision="40" />
 	</If>
 	<!-- Cursed Dais-->
 	<If condition="HasQuest(369900)">
@@ -67,8 +33,8 @@
 		<WaitTimer questId="1" stepId="2" waitTime="1000" />
 		<If condition="Zeta.Bot.Settings.GlobalSettings.Instance.LastProfile.Contains('ZB')">
 			<ToggleTargeting questId="1" combat="False" />
-			<MoveToObjective questId="1" interactRange="20" pathPrecision="40" />	
-		</If>		
+		</If>
+		<MoveToObjective questId="1" interactRange="20" pathPrecision="40" />	
 		<ToggleTargeting questId="1" combat="True" killRadius="45" />
 		<WaitTimer questId="1" stepId="2" waitTime="1000" />
 		<While condition="HasQuest(369900) and not ActorExistsAt(368169, Me.Position.X, Me.Position.Y, Me.Position.Z, 100)">			
@@ -79,6 +45,10 @@
 			<MoveToActor questId="312429" stepId="2" pathPrecision="5" actorId="368169"/>
 			<WaitTimer questId="312429" stepId="2" waitTime="1000"/>
 		</While>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
 	</If>
 	<!-- Kill Rakanoth -->
 	<If condition="HasQuest(349262)">
@@ -104,6 +74,10 @@
 			<WaitTimer questId="1" stepId="2" waitTime="1000" />
 		</While>  
 		<SafeMoveTo questId="1" stepId="2" pathPrecision="10" x="358" y="352" z="0" />
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
 	</If>
 	
 	<!-- Kill the aspect of pain, Kill the aspect of anguish, Kill kao'ahn, Kill oah'tash-->
@@ -114,9 +88,12 @@
 		</While>
 		<WaitTimer questId="1" stepId="2" waitTime="1000" />		
 		<ToggleTargeting questId="1" combat="True" killRadius="45" />
-		<If condition="ZetaDia.ActInfo.ActiveBounty">			
-			<ExploreDungeon stayAfterBounty="False" questId="1" stepId="2" until="BountyComplete" boxSize="20" boxTolerance="0.3" pathPrecision="40" />
-		</If>
+		<MoveToObjective questId="1" interactRange="20" pathPrecision="40" />	
+		<ExploreDungeon stayAfterBounty="False" questId="1" stepId="2" until="BountyComplete" boxSize="20" boxTolerance="0.3" pathPrecision="40" />
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
 	</If>
 	
 	<!-- Kill sledge, hammermash, clear hell rift-->
@@ -162,6 +139,10 @@
 		<If condition="(CurrentWorldId == 109530) and HasQuest(362140)">	
 			<ExploreDungeon stayAfterBounty="False" questId="1" stepId="2" until="BountyComplete" boxSize="15" boxTolerance="0.3" pathPrecision="30" />
 		</If>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
 	</If>	
 	
 	<!-- Kill aspect of hatred, aspect of lies, slarg the behemoth, kysindra the wretched, pyres the damned-->
@@ -172,9 +153,12 @@
 		</While>
 		<ToggleTargeting questId="1" combat="True" killRadius="45" />
 		<WaitTimer questId="1" stepId="2" waitTime="1000" />
-		<If condition="ZetaDia.ActInfo.ActiveBounty">			
-			<ExploreDungeon stayAfterBounty="False" questId="1" stepId="2" until="BountyComplete" boxSize="15" boxTolerance="0.4" pathPrecision="40" />
-		</If>
+		<MoveToObjective questId="1" interactRange="20" pathPrecision="40" />		
+		<ExploreDungeon stayAfterBounty="False" questId="1" stepId="2" until="BountyComplete" boxSize="15" boxTolerance="0.4" pathPrecision="40" />
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
 	</If>
 	
 	<!-- Kill Izual-->
@@ -212,6 +196,10 @@
 			</While>
 			<SafeMoveTo questId="1" stepId="2" pathPrecision="10" x="583" y="558" z="0" />
 		</If>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
 	</If>
 	
 	<!-- Kill aspect of terror, grimnight the soulless, Sao'thall, rhau'kye, haures, aspect of sin-->
@@ -222,9 +210,12 @@
 		</While>
 		<ToggleTargeting questId="1" combat="True" killRadius="45" />
 		<WaitTimer questId="1" stepId="2" waitTime="1000" />
-		<If condition="ZetaDia.ActInfo.ActiveBounty">			
-			<ExploreDungeon stayAfterBounty="False" questId="1" stepId="2" until="BountyComplete" boxSize="15" boxTolerance="0.4" pathPrecision="40" />
-		</If>
+		<MoveToObjective questId="1" interactRange="20" pathPrecision="40" />	
+		<ExploreDungeon stayAfterBounty="False" questId="1" stepId="2" until="BountyComplete" boxSize="15" boxTolerance="0.4" pathPrecision="40" />
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
 	</If>
 	
 	<!-- Cursed chapel-->
@@ -236,8 +227,8 @@
 		<WaitTimer questId="1" stepId="2" waitTime="1000" />
 		<If condition="Zeta.Bot.Settings.GlobalSettings.Instance.LastProfile.Contains('ZB')">
 			<ToggleTargeting questId="1" combat="False" />
-			<MoveToObjective questId="1" interactRange="20" pathPrecision="40" />
 		</If>
+		<MoveToObjective questId="1" interactRange="20" pathPrecision="40" />
 		<ToggleTargeting questId="1" combat="True" killRadius="45" />
 		<WaitTimer questId="1" stepId="2" waitTime="1000" />
 		<While condition="HasQuest(369878) and not ActorExistsAt(365097, Me.Position.X, Me.Position.Y, Me.Position.Z, 100)">			
@@ -248,6 +239,10 @@
 			<MoveToActor questId="312429" stepId="2" pathPrecision="5" actorId="365097"/>
 			<WaitTimer questId="312429" stepId="2" waitTime="1000"/>
 		</While>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
 	</If>
 
 	<!-- kill diablo -->
@@ -292,6 +287,10 @@
 				</If>
 			</While>
 		</If>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
+		<WaitTimer questId="1" stepId="1" waitTime="500"/>
 	</If>
 
 	<ActBountiesComplete act="A4">
@@ -302,6 +301,7 @@
 		</While>
 		<ToggleTargeting questId="1" combat="True" killRadius="45" />
 		<WaitTimer questId="1" stepId="1" waitTime="1000"/>
+		<SafeMoveTo questId="312429" stepId="2" x="385" y="419" z="1" pathPrecision="5" statusText="" />
 		<MoveToActor questId="1" stepId="1" actorId="114622" />
 		<WaitTimer questId="1" stepId="1" waitTime="1000"/>
 		<WaitTimer questId="1" stepId="1" waitTime="1000"/>

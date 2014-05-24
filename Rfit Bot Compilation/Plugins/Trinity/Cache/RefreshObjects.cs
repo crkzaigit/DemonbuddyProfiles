@@ -676,8 +676,8 @@ namespace Trinity
                 (DateTime.UtcNow.Subtract(lastHadUnitInSights).TotalMilliseconds <= Settings.Combat.Misc.DelayAfterKill ||
                 DateTime.UtcNow.Subtract(lastHadEliteUnitInSights).TotalMilliseconds <= Settings.Combat.Misc.DelayAfterKill ||
                 DateTime.UtcNow.Subtract(lastHadBossUnitInSights).TotalMilliseconds <= 3000 ||
-                DateTime.UtcNow.Subtract(Helpers.Composites.LastFoundHoradricCache).TotalMilliseconds <= 5000)
-                )
+                DateTime.UtcNow.Subtract(Helpers.Composites.LastFoundHoradricCache).TotalMilliseconds <= 5000) ||
+                DateTime.UtcNow.Subtract(lastHadContainerInSights).TotalMilliseconds <= Settings.WorldObject.OpenContainerDelay)
             {
                 CurrentTarget = new TrinityCacheObject()
                                     {
