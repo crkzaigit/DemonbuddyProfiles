@@ -830,20 +830,18 @@ namespace QuestTools.ProfileTags
         }
 
         private int _timesForcedReset;
-        private const int TimesForceResetMax = 5;
-        
-        
+        private int TimesForceResetMax = 5;
+
         [XmlAttribute("maxResets")]
- 
         public int MaxResets 
         {
             get
             {
-                return timesForceResetMax;
+                return TimesForceResetMax;
             }
             set
             {
-                timesForceResetMax = value;
+                TimesForceResetMax = value;
             }
         }
 
