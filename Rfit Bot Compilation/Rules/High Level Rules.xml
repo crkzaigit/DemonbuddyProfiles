@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ItemRules name="High Level Item Rules" useRoundedValues="true">
+  <Priority priority1="Keep" priority2="Salvage" priority3="Sell" />
+
+  <Categories>
+    <Category ruleType="Keep">
+      
+      <!-- Plans and tomes -->
+      <ItemRule itemName="Tome of*" description="Tome of Secrets"/>
+      <ItemRule itemName="Plan*" description="Blacksmithing Plan"/>
+      <ItemRule itemName="Design*" description="Jewelcrafting Plan"/>
+      
+      <!-- Gems -->
+      <ItemRule itemName="Flawless Square*" description="Gem"/>
+      
+      <!-- Savlaging mats -->
+      <ItemRule itemName="*Tear*" description="Gem"/>
+      <ItemRule itemName="*Essence*" description="Gem"/>
+      
+      <ItemRule description="Keep Legendary Items">
+        <StatRules>
+          <Rule stat="Quality" value="Legendary" />
+        </StatRules>
+      </ItemRule>
+
+      <!-- Jewelry -->
+      <ItemRule itemBaseType="Jewelry" description="MF/GF Jewelry">
+        <StatRules>
+          <Rule stat="GoldFind" minValue="35" logic="Or" />
+          <Rule stat="MagicFind" minValue="35" logic="Or" />
+        </StatRules>
+      </ItemRule>
+      <ItemRule itemBaseType="Jewelry" description="Gold Find Jewelry with Stats">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="GoldFind" minValue="30" />
+          <Rule stat="Strength" minValue="100" logic="Or" />
+          <Rule stat="Intelligence" minValue="100" logic="Or" />
+          <Rule stat="Dexterity" minValue="100" logic="Or" />
+        </StatRules>
+      </ItemRule>
+      <ItemRule itemBaseType="Jewelry" description="Magic Find Jewelry with Stats">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="MagicFind" minValue="30" />
+          <Rule stat="Strength" minValue="100" logic="Or" />
+          <Rule stat="Intelligence" minValue="100" logic="Or" />
+          <Rule stat="Dexterity" minValue="100" logic="Or" />
+        </StatRules>
+      </ItemRule>
+      <ItemRule itemBaseType="Jewelry" description="Crit Damage Jewelry">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="CritDamagePercent" minValue="30" />
+          <Rule stat="Strength" minValue="100" logic="Or" />
+          <Rule stat="Intelligence" minValue="100" logic="Or" />
+          <Rule stat="Dexterity" minValue="100" logic="Or" />
+        </StatRules>
+      </ItemRule>
+      <ItemRule itemBaseType="Jewelry" description="Crit Chance Jewelry">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="CritPercent" minValue="3" />
+          <Rule stat="Strength" minValue="100" logic="Or" />
+          <Rule stat="Intelligence" minValue="100" logic="Or" />
+          <Rule stat="Dexterity" minValue="100" logic="Or" />
+        </StatRules>
+      </ItemRule>
+      <ItemRule itemBaseType="Jewelry" description="Attack Speed Jewelry">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="AttackSpeedPercent" minValue="4" />
+          <Rule stat="Strength" minValue="100" logic="Or" />
+          <Rule stat="Intelligence" minValue="100" logic="Or" />
+          <Rule stat="Dexterity" minValue="100" logic="Or" />
+        </StatRules>
+      </ItemRule>
+      <ItemRule itemBaseType="Jewelry" description="Rare Jewelry with Vitality">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="Vitality" minValue="100" />
+          <Rule stat="Strength" minValue="100" logic="Or" />
+          <Rule stat="Intelligence" minValue="100" logic="Or" />
+          <Rule stat="Dexterity" minValue="100" logic="Or" />
+        </StatRules>
+      </ItemRule>
+      <ItemRule itemBaseType="Jewelry" description="Rare Jewelry with All Resists">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="ResistAll" minValue="50" />
+          <Rule stat="Strength" minValue="100" logic="Or" />
+          <Rule stat="Intelligence" minValue="100" logic="Or" />
+          <Rule stat="Dexterity" minValue="100" logic="Or" />
+          <Rule stat="Vitality" minValue="100" logic="Or" />
+        </StatRules>
+      </ItemRule>
+      <ItemRule itemBaseType="Jewelry" description="Rare Jewelry with Socket and Stats">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="Sockets" minValue="1" />
+          <Rule stat="Strength" minValue="100" logic="Or" />
+          <Rule stat="Intelligence" minValue="100" logic="Or" />
+          <Rule stat="Dexterity" minValue="100" logic="Or" />
+          <Rule stat="Vitality" minValue="100" logic="Or" />
+        </StatRules>
+      </ItemRule>
+      <ItemRule itemBaseType="Jewelry" description="Rare Jewelry with Life on Hit">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="LifeOnHit" minValue="150" />
+          <Rule stat="Strength" minValue="100" logic="Or" />
+          <Rule stat="Intelligence" minValue="100" logic="Or" />
+          <Rule stat="Dexterity" minValue="100" logic="Or" />
+          <Rule stat="Vitality" minValue="100" logic="Or" />
+        </StatRules>
+      </ItemRule>
+
+      <!-- Helms -->
+      <ItemRule itemType="Helm" description="Rare Helm with Socket and GF or MF">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="Sockets" minValue="1" />
+          <Rule stat="GoldFind" minValue="19" logic="Or" />
+          <Rule stat="MagicFind" minValue="19" logic="Or" />
+        </StatRules>
+      </ItemRule>
+      <ItemRule itemType="Helm" description="Rare Helm with Socket, Vitality and Primary Stat">
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+          <Rule stat="Sockets" minValue="1" />
+          <Rule stat="Vitality" minValue="80" />
+          <Rule stat="Strength" minValue="110" logic="Or" />
+          <Rule stat="Intelligence" minValue="110" logic="Or" />
+          <Rule stat="Dexterity" minValue="110" logic="Or" />
+        </StatRules>
+      </ItemRule>
+    </Category>
+    
+    <Category ruleType="Salvage">
+      <!-- Salvage any 61+ that we have left -->
+      <ItemRule description="ilvl 61+ item">
+        <StatRules>
+          <Rule stat="Level" minValue="61" />
+        </StatRules>
+      </ItemRule>
+    </Category>
+    
+    <Category ruleType="Sell">
+      <ItemRule description="Sell Everything Left">
+        <StatRules>
+          <Rule stat="Quality" value="Magic1" />
+        </StatRules>
+      </ItemRule>
+    </Category>
+    <Category ruleType="PickUp">
+
+      <!-- 
+           In these rules, we'll be picking up all the blue/yellow items that are 61+ 
+           Any legendaries
+           And also gems, tomes, pots, plans
+           Lastly, at least stacks of 300 gold!
+      -->
+
+      <ItemRule description="Good Quality Magic Items">
+        <StatRules>
+          <Rule stat="Quality" value="Magic1" />
+          <!-- Or logic here will mean either it's a 61+ ilvl item, or a legendary. Both of which we want to keep. -->
+          <Rule stat="Level" minValue="61" logic="Or" />
+          <Rule stat="Quality" value="Legendary" logic="Or" />
+        </StatRules>
+      </ItemRule>
+
+      <ItemRule itemBaseType="Jewelry" description="Rare rings/amu etc. lvl55+">
+        <StatRules>
+          <Rule stat="Quality" value="Magic1" />
+          <!-- Pickup any jewelery 55+ ilvl. -->
+          <Rule stat="Level" minValue="55" />
+        </StatRules>
+      </ItemRule>
+      
+      <!-- Pick up gold, at least in stacks of 100 -->
+      <ItemRule itemName="Gold" description="Gold">
+        <StatRules>
+          <Rule stacks="100" />
+        </StatRules>
+      </ItemRule>
+
+      <!-- Plans and tomes -->
+      <ItemRule itemName="Tome of*" description="Tome of Secrets"/>
+      <ItemRule itemName="Plan*" description="Blacksmithing Plan"/>
+      <ItemRule itemName="Design*" description="Jewelcrafting Plan"/>
+
+      <!-- Gems -->
+      <ItemRule itemName="Flawless Square*" description="Gem"/>
+
+      <!-- Health potions -->
+      <ItemRule itemName="*Health Potion*" description="Health Potion"/>
+
+    </Category>
+  </Categories>
+</ItemRules>
