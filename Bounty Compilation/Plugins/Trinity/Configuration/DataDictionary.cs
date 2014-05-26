@@ -253,14 +253,17 @@ namespace Trinity
         public static HashSet<DoubleInt> AvoidanceAnimations { get { return DataDictionary.avoidanceAnimations; } }
         private static readonly HashSet<DoubleInt> avoidanceAnimations = new HashSet<DoubleInt>
         {
-           new DoubleInt(3847, (int)SNOAnim.Stitch_Suicide_Bomb), // Corpulent_A: Stitch_Suicide_Bomb
-           new DoubleInt(3337, (int)SNOAnim.Beast_start_charge_02), // A1 Savage Beast Charge - needs special handling!
-           new DoubleInt(3337, (int)SNOAnim.Beast_charge_02), // A1 Savage Beast Charge - needs special handling!
-           new DoubleInt(3337, (int)SNOAnim.Beast_charge_04), // A1 Savage Beast Charge - needs special handling!
-           new DoubleInt(330824, 330824), // Urzael flame 
-           new DoubleInt(330824, 348109), // Urzael Cannonball Aim
-           new DoubleInt(330824, 344952), // Urzael Flying           
-           
+            new DoubleInt(3847, (int)SNOAnim.Stitch_Suicide_Bomb), // Corpulent_A: Stitch_Suicide_Bomb
+            new DoubleInt(3337, (int)SNOAnim.Beast_start_charge_02), // A1 Savage Beast Charge - needs special handling!
+            new DoubleInt(3337, (int)SNOAnim.Beast_charge_02), // A1 Savage Beast Charge - needs special handling!
+            new DoubleInt(3337, (int)SNOAnim.Beast_charge_04), // A1 Savage Beast Charge - needs special handling!
+            new DoubleInt(330824, (int)SNOAnim.x1_Urzael_attack_06), // Urzael flame 
+            new DoubleInt(330824, 348109), // Urzael Cannonball Aim
+            new DoubleInt(330824, 344952), // Urzael Flying
+            new DoubleInt(343767, (int)SNOAnim.malletDemon_attack_01), // X1_LR_Boss_MalletDemon
+            new DoubleInt(106709, (int)SNOAnim.malletDemon_attack_01), // MalletDemon_A
+            new DoubleInt(219736, (int)SNOAnim.malletDemon_attack_01), // MalletDemon_A_Unique_01  
+            new DoubleInt(219751, (int)SNOAnim.malletDemon_attack_01), // MalletDemon_A_Unique_02 
        };
 
 
@@ -397,13 +400,13 @@ namespace Trinity
         public static Dictionary<int, float> DefaultAvoidanceCustomRadius { get { return defaultAvoidanceCustomRadius; } }
         private static readonly Dictionary<int, float> defaultAvoidanceCustomRadius = new Dictionary<int, float>()
         {
-            {330824, 65f }, // A5 Urzael animations
-            {360598, 25f }, // x1_Urzael_CeilingDebris_DamagingFire_wall
-            {359205, 25f }, // x1_Urzael_ceilingDebris_Impact_Beam
-            {360883, 25f }, // x1_Urzael_ceilingDebris_Impact_Circle
-            {362850, 25f }, // x1_Urzael_Cannonball_burning_invisible
-            {346976, 25f }, // x1_Urzael_Cannonball_burning_impact
-            {346975, 25f }, // x1_Urzael_Cannonball_burning
+            {330824, 35f }, // A5 Urzael animations
+            {360598, 10f }, // x1_Urzael_CeilingDebris_DamagingFire_wall
+            {359205, 20f }, // x1_Urzael_ceilingDebris_Impact_Beam
+            {360883, 20f }, // x1_Urzael_ceilingDebris_Impact_Circle
+            {362850, 12f }, // x1_Urzael_Cannonball_burning_invisible
+            {346976, 12f }, // x1_Urzael_Cannonball_burning_impact
+            {346975, 12f }, // x1_Urzael_Cannonball_burning
 
             {360738, 12f}, // X1_Adria_arcanePool
             {338889, 5f}, // x1_Adria_bouncingProjectile
@@ -412,20 +415,15 @@ namespace Trinity
             {335505, 5f}, // x1_malthael_drainSoul_ghost
             {325136, 20f}, // x1_Malthael_DeathFogMonster
             {340512, 8f}, // x1_Malthael_Mephisto_LightningObject
-
+            {343767, 35f }, // Mallet Demons
+            {106709, 35f }, // Mallet Demons
+            {219736, 35f }, // Mallet Demons
+            {219751, 35f }, // Mallet Demons
         };
 
         /*
          * Combat-related dictionaries/defaults
          */
-
-        /// <summary>
-        /// A special list of things *NOT* to use whirlwind on (eg because they move too quick/WW is ineffective on)
-        /// </summary>
-        public static HashSet<int> WhirlwindIgnoreSNOIds { get { return whirlwindIgnoreIds; } }
-        internal static readonly HashSet<int> whirlwindIgnoreIds = new HashSet<int> {
-            4304, 5984, 5985, 5987, 5988,
-         };
 
         /// <summary>
         /// ActorSNO's of Very fast moving mobs (eg wasps), for special skill-selection decisions
@@ -778,6 +776,7 @@ namespace Trinity
             368515, // A5 Nephalem Switch -  Passage to Corvus 
             347276, // x1_Fortress_Soul_Grinder_A
             326937, // x1_Pand_BatteringRam_Hook_B
+            291368, // x1_Urzael_Boss
         };
 
         /// <summary>
@@ -821,7 +820,6 @@ namespace Trinity
 			85790, //Cath_Lecturn_ LachdanansScroll
 			227305, //Lore_Inarius_Corrupt
 			137125, //FesteringWoods_WarriorsRest_Lore
-            289794, // X1_PandExt_ArmorRack
         };
 
         /// <summary>

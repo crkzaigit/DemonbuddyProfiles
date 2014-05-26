@@ -746,9 +746,10 @@ namespace Trinity
 
                         bool isRareChest = CurrentCacheObject.InternalName.ToLower().Contains("chest_rare") || DataDictionary.ResplendentChestIds.Contains(CurrentCacheObject.ActorSNO);
                         bool isChest = (!isRareChest && CurrentCacheObject.InternalName.ToLower().Contains("chest")) ||
-                            CurrentCacheObject.InternalName.ToLower().Contains("rack") ||
                             DataDictionary.ContainerWhiteListIds.Contains(CurrentCacheObject.ActorSNO); // We know it's a container but this is not a known rare chest
                         bool isCorpse = CurrentCacheObject.InternalName.ToLower().Contains("corpse");
+                        bool isWeaponRack = CurrentCacheObject.InternalName.ToLower().Contains("rack");
+                        bool isGroundClicky = CurrentCacheObject.InternalName.ToLower().Contains("ground_clicky");
 
                         // We want to do some vendoring, so don't open anything new yet
                         if (ForceVendorRunASAP)
@@ -797,19 +798,27 @@ namespace Trinity
                             return AddToCache;
                         }
 
+                        // Resplendent chests have no range check
                         if (isRareChest && Settings.WorldObject.OpenRareChests)
                         {
                             AddToCache = true;
                             return AddToCache;
                         }
 
-                        if (!isRareChest && CurrentCacheObject.RadiusDistance <= Settings.WorldObject.ContainerOpenRange)
+                        // Regular container, check range
+                        if (CurrentCacheObject.RadiusDistance <= Settings.WorldObject.ContainerOpenRange)
                         {
-                            if ((isChest && Settings.WorldObject.OpenContainers) || (isCorpse && Settings.WorldObject.InspectCorpses))
-                            {
-                                AddToCache = true;
-                                return AddToCache;
-                            }
+                            if (isChest && Settings.WorldObject.OpenContainers)
+                                return true;
+
+                            if (isCorpse && Settings.WorldObject.InspectCorpses)
+                                return true;
+
+                            if (isGroundClicky && Settings.WorldObject.InspectGroundClicky)
+                                return true;
+
+                            if (isWeaponRack && Settings.WorldObject.InspectWeaponRacks)
+                                return true;
                         }
                       
                         if (CurrentCacheObject.IsQuestMonster)

@@ -57,13 +57,13 @@ namespace Trinity.Combat.Abilities
                 }
             }
 
-            // Call of the Ancients
-            if (IsNull(power) && CanUseCallOfTheAncients)
-                power = PowerCallOfTheAncients;
-
             // WOTB
             if (IsNull(power) && CanUseWrathOfTheBerserker)
                 power = PowerWrathOfTheBerserker;
+
+            // Call of the Ancients
+            if (IsNull(power) && CanUseCallOfTheAncients)
+                power = PowerCallOfTheAncients;
 
             // Earthquake
             if (IsNull(power) && CanUseEarthquake)
@@ -202,6 +202,7 @@ namespace Trinity.Combat.Abilities
                     !IsCurrentlyAvoiding &&
                     CanCast(SNOPower.Barbarian_CallOfTheAncients) &&
                     !Player.IsIncapacitated &&
+	                !GetHasBuff(SNOPower.Barbarian_CallOfTheAncients) &&
                     (TargetUtil.EliteOrTrashInRange(V.F("Barbarian.CallOfTheAncients.MinEliteRange")) ||
                     TargetUtil.AnyMobsInRange(V.F("Barbarian.CallOfTheAncients.MinEliteRange"), 3) || TargetUtil.AnyElitesInRange(V.F("Barbarian.CallOfTheAncients.MinEliteRange")));
             }
@@ -614,8 +615,6 @@ namespace Trinity.Combat.Abilities
                 return !UseOOCBuff && !IsCurrentlyAvoiding && Hotbar.Contains(SNOPower.Barbarian_Whirlwind) && !Player.IsIncapacitated && !Player.IsRooted && Player.PrimaryResource >= 10 &&
                     (!IsWaitingForSpecial || (IsWaitingForSpecial && Player.PrimaryResource > MinEnergyReserve)) &&
                     //(!IsWaitingForSpecial || (IsWaitingForSpecial && !(TargetUtil.AnyMobsInRange(3, 15) || ForceCloseRangeTarget))) && // make sure we're not surrounded if waiting for special
-                    // Don't WW against goblins, units in the special SNO list
-                    (!Settings.Combat.Barbarian.SelectiveWhirlwind || (Settings.Combat.Barbarian.SelectiveWhirlwind && !DataDictionary.WhirlwindIgnoreSNOIds.Contains(CurrentTarget.ActorSNO))) &&
                     // Only if within 25 yards of main target
                     ((CurrentTarget.RadiusDistance <= 25f || TargetUtil.AnyMobsInRange(V.F("Barbarian.Whirlwind.TrashRange"), V.I("Barbarian.Whirlwind.TrashCount")))) &&
                     (TargetUtil.AnyMobsInRange(50, 2) || CurrentTarget.HitPointsPct >= 0.30 || CurrentTarget.IsBossOrEliteRareUnique || Player.CurrentHealthPct <= 0.60) &&
