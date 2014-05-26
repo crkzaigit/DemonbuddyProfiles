@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ItemRules name="Weight Based Item Rules" useRoundedValues="true" enableDebugLogging="False">
+  <!-- The order in which item rules are evaluated. Typically, this is fine for almost all rule sets. 
+  However, you may want to switch things around sometimes if you want to force-sell things that may match keep rules. -->
+  <Priority priority1="Keep" priority2="Salvage" priority3="Sell" />
+  <Categories>
+    <Category ruleType="PickUp">
+      <!-- Pick up all rares with 4+ stats -->
+      <ItemRule>
+        <StatRules>
+          <Rule stat="Quality" value="Rare4" />
+        </StatRules>
+      </ItemRule>
+
+      <!-- Pick up gold, at least in stacks of 100 -->
+      <ItemRule itemName="Gold">
+        <StatRules>
+          <Rule stacks="100" />
+        </StatRules>
+      </ItemRule>
+
+      <!-- Pick up all pages and tomes, blacksmithing/jewelcrafting -->
+      <ItemRule itemName="Tome of*" />
+      <ItemRule itemName="Plan*" />
+      <ItemRule itemName="Design*" />
+      <ItemRule itemName="Demonic Essence" />
+
+      <!-- Gems -->
+      <ItemRule itemName="Flawless Square*" />
+      <ItemRule itemName="Mythic Health Potion" />
+    </Category>
+
+    <Category ruleType="Keep">
+      
+      <ItemRule itemType="Wand" description="Wands. Weight based" minScore="20000.0" />
+      <ItemRule itemBaseType="Weapon" twoHanded="True" description="2H Weapons. Weight based" minScore="50000.0" />
+      <ItemRule itemBaseType="Weapon" oneHanded="True" description="1H Weapons. Weight based" minScore="40000.0" />
+      
+      <ItemRule description="Helms - Weight based" minScore="20000.0">
+        <ItemTypes>
+          <ItemType>WizardHat</ItemType>
+          <ItemType>Helm</ItemType>
+          <ItemType>SpiritStone</ItemType>
+          <ItemType>VoodooMask</ItemType>
+        </ItemTypes>
+      </ItemRule>
+      
+      <ItemRule itemType="Belt" description="Belts - Weight based" minScore="20000.0" />
+      <ItemRule itemType="MightyBelt" description="Belts - Weight based" minScore="25000.0" />
+      
+      <ItemRule itemType="Ring" description="Rings - weight based." minScore="15000.0" />
+      
+      <ItemRule itemType="Amulet" description="Amulet and Rings - weight based." minScore="25000.0" />
+      
+      <ItemRule itemType="Boots" description="Wands. Weight based" minScore="14000.0" />
+      
+      <ItemRule itemType="Gloves" description="Gloves - weight based." minScore="20000.0" />
+
+      <ItemRule itemType="Chest" description="Chest - weight based." minScore="20000.0" />
+      
+      <ItemRule itemType="Legs" description="Legs - weight based." minScore="20000.0" />
+      
+      <ItemRule itemType="Shield" description="Shields. Weight based" minScore="30000.0" />
+
+      <ItemRule itemType="Quiver" description="Demonhunter quivers. Weight based" minScore="8000.0" />
+
+      <ItemRule itemType="Orb" description="Wizard sources. Weight based" minScore="20000.0" />
+
+      <!-- Keep all pages demonic essences tomes etc. -->
+      <ItemRule itemName="Tome of*" />
+      <ItemRule itemName="Plan: Exalted Grand*" />
+      <ItemRule itemName="Design*" />
+      <ItemRule itemName="Demonic Essence" />
+
+      <!-- Keep Gems -->
+      <ItemRule itemName="Flawless Square*" />
+
+      <!-- Keep rares and legendaries, regardless of stats. -->
+      <ItemRule description="Keep legendary items!">
+        <StatRules>
+          <Rule stat="Quality" value="Legendary" />
+        </StatRules>
+      </ItemRule>
+    </Category>
+
+    <Category ruleType="Sell">
+      <ItemRule description="Sell Everything Left">
+        <StatRules>
+          <Rule stat="Quality" value="Magic1" />
+        </StatRules>
+      </ItemRule>
+    </Category>
+  </Categories>
+
+  <!-- Available Stats:
+  
+            Intelligence
+            Strength
+            Vitality
+            Dexterity
+            Armor - this is the "base" armor of an item.
+            ArmorBonus - this is the "bonus" armor on the item. Represented in the tooltip as "+x Armor"
+            ArmorTotal - this is the "total" armor for the item.
+
+            // Damage % Increases - These are typically things like 3% Fire Damage - typically found on Wizard/WD items
+            FireDamagePercent
+            ColdDamagePercent
+            LightningDamagePercent
+            PoisonDamagePercent
+            ArcaneDamagePercent
+            HolyDamagePercent
+
+            MinDamage - this is the smaller of the 2 when the tooltip states "+5-10 damage" or similar.
+            MaxDamage - the max value of the above
+            DPS - weapon DPS. This is the DPS as shown in the tooltip.
+
+            GoldFind
+            MagicFind 
+
+            // Increase modifiers
+            AttackSpeedPercent
+
+            // Weapon
+            WeaponAttacksPerSecond
+            WeaponMinDamage
+            WeaponMaxDamage
+
+            // Misc
+            MovementSpeed - run speed %
+            HealthGlobeBonus
+            HealthPerSecond
+            LifePercent
+            Level - item level. DOES NOT MATCH IN-GAME ITEM LEVEL REQUIREMENT!
+
+            // Resists
+            ResistAll
+            ResistArcane
+            ResistCold
+            ResistPhysical
+            ResistLightning
+            ResistFire
+            ResistPoison
+            ResistHoly
+
+            Thorns
+
+            DamageReductionPhysicalPercent
+            
+            Sockets
+   -->
+</ItemRules>

@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WeightSet enableDebugLogging="True">
+  <Name>Default weight set</Name>
+  <StatWeightCategories>
+    <StatWeightCategory itemBaseType="Weapon" description="Weights for 2H Weapons." weaponHand="TwoHand" priority="100.0">
+      <StatWeights>
+        <StatWeight stat="DPS" weight="20.0" />´<!-- 30*dps example: 960 dps = 28800 -->
+        <StatWeight stat="HighestPrimaryAttribute" weight="20.0" /> <!-- 20*highest primary dex/int/str -->
+        <StatWeight stat="CritDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="WeaponDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="WeaponAttacksPerSecond" weight="10000.0" /> <!-- Weapon with attackspeed of 1.63 get's 16300 points here. -->
+        <StatWeight stat="Sockets " weight="5000.0" /> <!-- Weapon with sockets get's an additional 5000 points. -->
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory description="Weights for 1H weapons." weaponHand="OneHand" priority="200.0">
+      <ItemTypes>
+        <ItemType>Axe</ItemType>
+        <ItemType>Dagger</ItemType>
+        <ItemType>Mace</ItemType>
+        <ItemType>MightyWeapon</ItemType>
+        <ItemType>Spear</ItemType>
+        <ItemType>Sword</ItemType>
+      </ItemTypes>
+      <StatWeights>
+        <StatWeight stat="DPS" weight="20.0" /> <!-- 30*dps example: 960 dps = 28800 -->
+        <StatWeight stat="HighestPrimaryAttribute" weight="20.0" /> <!-- 20*highest primary dex/int/str -->
+        <StatWeight stat="CritDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="WeaponDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="LifeSteal" weight="1000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="WeaponAttacksPerSecond" weight="10000.0" /> <!-- Weapon with attackspeed of 1.63 get's 16300 points here. -->
+        <StatWeight stat="Sockets " weight="5000.0" /> <!-- Weapon with sockets get's an additional 5000 points. -->
+      </StatWeights>
+    </StatWeightCategory>
+
+    <!-- Class Specific Weapons. -->
+    <StatWeightCategory itemType="CeremonialDagger" description="Weights for Cermonial Daggers." weaponHand="OneHand" priority="2200.0">
+      <StatWeights>
+        <StatWeight stat="DPS" weight="20.0" /> <!-- 30*dps example: 960 dps = 28800 -->
+        <StatWeight stat="Intelligence" weight="20.0" /> <!-- 20*highest primary dex/int/str -->
+        <StatWeight stat="CritDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="WeaponDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="LifeSteal" weight="1000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="WeaponAttacksPerSecond" weight="10000.0" /> <!-- Weapon with attackspeed of 1.63 get's 16300 points here. -->
+        <StatWeight stat="Sockets " weight="5000.0" /> <!-- Weapon with sockets get's an additional 5000 points. -->
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemType="Orb" description="Weights for Hand Wizard orbs." priority="2100.0">
+      <StatWeights>
+        <StatWeight stat="MaxDamage" weight="30.0" /> <!-- 30*dps example: 400 max damage = 8000 -->
+        <StatWeight stat="Intelligence" weight="20.0" /> <!-- 20*highest primary dex/int/str -->
+        <StatWeight stat="Vitality" weight="5.0" /> <!-- 20*highest primary dex/int/str -->
+        <StatWeight stat="AttackSpeedPercent" weight="100000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="Sockets " weight="5000.0" /> <!-- Orb with sockets get's an additional 5000 points. -->
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemType="HandCrossbow" description="Weights for Hand Crossbows." weaponHand="OneHand" priority="2000.0">
+      <StatWeights>
+        <StatWeight stat="DPS" weight="20.0" /> <!-- 30*dps example: 960 dps = 28800 -->
+        <StatWeight stat="Dexterity" weight="20.0" /> <!-- 20*highest primary dex/int/str -->
+        <StatWeight stat="Vitality" weight="5.0" /> <!-- 20*highest primary dex/int/str -->
+        <StatWeight stat="CritDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="WeaponDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="LifeSteal" weight="1000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="WeaponAttacksPerSecond" weight="10000.0" /> <!-- Weapon with attackspeed of 1.63 get's 16300 points here. -->
+        <StatWeight stat="Sockets " weight="5000.0" /> <!-- Weapon with sockets get's an additional 5000 points. -->
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemType="FistWeapon" description="Weights for Fist Weapons." weaponHand="OneHand" priority="1900.0">
+      <StatWeights>
+        <StatWeight stat="DPS" weight="20.0" /> <!-- 30*dps example: 960 dps = 28800 -->
+        <StatWeight stat="Dexterity" weight="20.0" /> <!-- 20*highest primary dex/int/str -->
+        <StatWeight stat="Vitality" weight="5.0" /> <!-- 20*highest primary dex/int/str -->
+        <StatWeight stat="CritDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="WeaponDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="LifeOnHit" weight="5.0" /> <!-- 10 points for each Life after kill ( good for cannon monks on Skorn ) -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="LifeSteal" weight="1000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="WeaponAttacksPerSecond" weight="10000.0" /> <!-- Weapon with attackspeed of 1.63 get's 16300 points here. -->
+        <StatWeight stat="Sockets " weight="5000.0" /> <!-- Weapon with sockets get's an additional 5000 points. -->
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemType="Wand" description="Weights for Wands." priority="1800.0">
+      <StatWeights>
+        <StatWeight stat="DPS" weight="1.0" />
+        <StatWeight stat="WeaponAttacksPerSecond" weight="10000.0" />
+        <StatWeight stat="WeaponDamagePercent" weight="10000.0" />
+        <StatWeight stat="Sockets" weight="1000" />
+      </StatWeights>
+    </StatWeightCategory>
+
+    <StatWeightCategory description="Weights for cloaks." priority="1700.0">
+      <ItemTypes>
+        <ItemType>Cloak</ItemType>
+      </ItemTypes>
+      <StatWeights>
+        <StatWeight stat="Dexterity" weight="30.0" />
+        <StatWeight stat="Vitality" weight="20.0" />
+        <StatWeight stat="Armor" weight="20.0" />
+        <StatWeight stat="ResistAll" weight="80.0" />
+        <StatWeight stat="CritPercent" weight="100.0" />
+        <StatWeight stat="Sockets" weight="90.0" />
+        <StatWeight stat="LifePercent" weight="100.0" />
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory description="Weights for chests helms and legs." priority="1600.0">
+      <ItemTypes>
+        <ItemType>Chest</ItemType>
+        <ItemType>Legs</ItemType>
+        <ItemType>Helm</ItemType>
+        <ItemType>WizardHat</ItemType>
+        <ItemType>Helm</ItemType>
+        <ItemType>SpiritStone</ItemType>
+        <ItemType>VoodooMask</ItemType>
+      </ItemTypes>
+      <StatWeights>
+        <StatWeight stat="HighestPrimaryAttribute" weight="30.0" />
+        <StatWeight stat="Vitality" weight="20.0" />
+        <StatWeight stat="Armor" weight="20.0" />
+        <StatWeight stat="ResistAll" weight="50.0" /> <!-- 50 points per allRes eg; 50*80=4800 points  -->
+        <StatWeight stat="CritPercent" weight="100000.0" /> <!-- 1000 points per crit hit%. -->
+        <StatWeight stat="Sockets" weight="1500.0" /> <!-- 1500 points per socket. -->
+        <StatWeight stat="LifePercent" weight="10000.0" /> <!-- 100 points per 1% life% -->
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemType="MightyBelt" description="Weights for mighty belts." priority="1500.0">
+      <StatWeights>
+        <StatWeight stat="Strength" weight="60.0" />
+        <StatWeight stat="Vitality" weight="20.0" />
+        <StatWeight stat="ResistAll" weight="80.0" />
+        <StatWeight stat="Armor" weight="10.0" /> <!-- 10 per armor points 390 armor = 3900 points. -->
+        <StatWeight stat="LifePercent" weight="1000.0" /> <!-- 100 per life % -->
+        <StatWeight stat="LifeSteal" weight="10000.0" /> <!-- 1000 per life steal % -->
+        <StatWeight stat="ItemLevelRequirementReduction" weight="100.0" />
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemType="Belt" description="Weights for belts." priority="1400.0">
+      <StatWeights>
+        <StatWeight stat="HighestPrimaryAttribute" weight="30.0" />
+        <StatWeight stat="Vitality" weight="20.0" />
+        <StatWeight stat="ResistAll" weight="80.0" />
+        <StatWeight stat="Armor" weight="10.0" /> <!-- 10 per armor points 390 armor = 3900 points. -->
+        <StatWeight stat="LifePercent" weight="10000.0" /> <!-- 100 per life % -->
+        <StatWeight stat="ItemLevelRequirementReduction" weight="100.0" />
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory  description="Weights for Amulets and Gloves!" priority="1400">
+      <ItemTypes>
+        <ItemType>Amulet</ItemType>
+        <ItemType>Gloves</ItemType>
+      </ItemTypes>
+      <StatWeights>
+        <StatWeight stat="HighestPrimaryAttribute" weight="50.0" />
+        <StatWeight stat="Vitality" weight="30.0" />
+        <StatWeight stat="ResistAll" weight="75.0" />
+        <StatWeight stat="AttackSpeedPercent" weight="20000.0" /> <!-- Jewelry with attack speed of +10% will get 20,000 points here.  -->
+        <StatWeight stat="CritPercent" weight="150000.0" /> <!-- Jewelry with crit hit change of +10% will get 20,000 points here.  -->
+        <StatWeight stat="CritDamagePercent" weight="10000.0" /> <!-- Jewelry with critical hit damage of +10% will get 10,000 points here.  -->
+        <StatWeight stat="Sockets" weight="100.0" />
+        <StatWeight stat="LifeOnHit" weight="20.0" />
+        <StatWeight stat="LifePercent" weight="50000.0" />
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemType="Ring" description="Weights for Rings!" priority="1300">
+      <StatWeights>
+        <StatWeight stat="HighestPrimaryAttribute" weight="10.0" />
+        <StatWeight stat="Vitality" weight="5.0" />
+        <StatWeight stat="ResistAll" weight="50.0" />
+        <StatWeight stat="AttackSpeedPercent" weight="200000.0" /> <!-- Rings with attack speed of +10% will get 10,000 points here.  -->
+        <StatWeight stat="CritPercent" weight="100000.0" /> <!-- Rings with crit hit change of +10% will get 20,000 points here.  -->
+        <StatWeight stat="CritDamagePercent" weight="10000.0" /> <!-- Rings with critical hit damage of +10% will get 10,000 points here.  -->
+        <StatWeight stat="Sockets" weight="500.0" />
+        <StatWeight stat="LifeOnHit" weight="20.0" />
+        <StatWeight stat="LifePercent" weight="50000.0" />
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemType="Boots" description="Weights for Boots!" priority="1200">
+      <StatWeights>
+        <StatWeight stat="HighestPrimaryAttribute" weight="50.0" />
+        <StatWeight stat="Vitality" weight="30.0" />
+        <StatWeight stat="ResistAll" weight="75.0" />
+        <StatWeight stat="AttackSpeedPercent" weight="20000.0" />
+        <StatWeight stat="CritPercent" weight="150000.0" />
+        <StatWeight stat="CritDamagePercent" weight="10000.0" />
+        <StatWeight stat="MovementSpeed " weight="10000.0" />
+        <StatWeight stat="LifePercent" weight="50000.0" />
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemType="Shield" description="Weights for Shields." priority="1100.0">
+      <StatWeights>
+        <StatWeight stat="HighestPrimaryAttribute" weight="20.0" />
+        <StatWeight stat="Vitality" weight="10.0" />
+        <StatWeight stat="Armor" weight="5.0" /> <!-- Shield with 1000 armor get's 5,000 points. -->
+        <StatWeight stat="ResistAll" weight="40.0" />
+        <StatWeight stat="CritPercent" weight="100000.0" /> <!-- 1000 points per crit hit% -->
+        <StatWeight stat="BlockChance " weight="50000.0" /> <!--500 points per block% eg; 34% shield get's 3400 points. -->
+        <StatWeight stat="Sockets" weight="1000.0" />
+        <StatWeight stat="LifePercent" weight="10000.0" /> <!--100 points per life% eg; 10% shield get's 3400 points. -->
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemType="Quiver" description="Weights for Quivers." priority="1000.0">
+      <StatWeights>
+        <StatWeight stat="Dexterity" weight="10.0" />
+        <StatWeight stat="CritPercent" weight="50000.0" />
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" />
+        <StatWeight stat="Sockets" weight="1000.0" />
+        <StatWeight stat="Vitality" weight="5.0" />
+      </StatWeights>
+    </StatWeightCategory>
+
+    <StatWeightCategory itemBaseType="Weapon" description="Default weights for Weapons" priority="10.0">
+      <StatWeights>
+        <StatWeight stat="DPS" weight="20.0" /> <!-- 30*dps example: 960 dps = 28800 -->
+        <StatWeight stat="HighestPrimaryAttribute" weight="20.0" /> <!-- 20*highest primary dex/int/str -->
+        <StatWeight stat="CritDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="WeaponDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="AttackSpeedPercent" weight="10000.0" /> <!-- 10,000 points per point. -->
+        <StatWeight stat="LifeSteal" weight="1000.0" /> <!-- 1000 points per point. -->
+        <StatWeight stat="WeaponAttacksPerSecond" weight="10000.0" /> <!-- Weapon with attackspeed of 1.63 get's 16300 points here. -->
+        <StatWeight stat="Sockets " weight="5000.0" /> <!-- Weapon with sockets get's an additional 5000 points. -->
+      </StatWeights>
+    </StatWeightCategory>
+    <StatWeightCategory itemBaseType="Armor" description="Default weights for Armor" priority="20.0">
+      <StatWeights>
+        <StatWeight stat="HighestPrimaryAttribute" weight="50.0" />
+        <StatWeight stat="Vitality" weight="30.0" />
+        <StatWeight stat="ResistAll" weight="75.0" />
+        <StatWeight stat="AttackSpeedPercent" weight="20000.0" />
+        <StatWeight stat="CritPercent" weight="150000.0" />
+        <StatWeight stat="CritDamagePercent" weight="10000.0" />
+        <StatWeight stat="MovementSpeed " weight="10000.0" />
+        <StatWeight stat="LifePercent" weight="50000.0" />
+      </StatWeights>
+    </StatWeightCategory>
+  </StatWeightCategories>
+  <DefaultStatWeights>
+    <StatWeight stat="HighestPrimaryAttribute" weight="50.0" />
+    <StatWeight stat="Vitality" weight="30.0" />
+    <StatWeight stat="ResistAll" weight="75.0" />
+    <StatWeight stat="AttackSpeedPercent" weight="20000.0" />
+    <StatWeight stat="CritPercent" weight="150000.0" />
+    <StatWeight stat="CritDamagePercent" weight="10000.0" />
+    <StatWeight stat="MovementSpeed " weight="10000.0" />
+    <StatWeight stat="LifePercent" weight="50000.0" />
+    <StatWeight stat="DPS" weight="20.0" /> <!-- 30*dps example: 960 dps = 28800 -->
+    <StatWeight stat="WeaponDamagePercent" weight="10000.0" /> <!-- 1000 points per point. -->
+    <StatWeight stat="LifeSteal" weight="1000.0" /> <!-- 1000 points per point. -->
+    <StatWeight stat="WeaponAttacksPerSecond" weight="10000.0" /> <!-- Weapon with attackspeed of 1.63 get's 16300 points here. -->
+    <StatWeight stat="Sockets " weight="5000.0" /> <!-- Weapon with sockets get's an additional 5000 points. -->
+  </DefaultStatWeights>
+</WeightSet>
+
+<!-- 
+
+Good reference for max stats in different slots:
+  http://www.d3rmt.com/guides/diablo-3-item-stat-maximum-values/
+
+Avaible Stats:
+            // Primary Attributes
+            Intelligence
+            Strength
+            Vitality
+            Dexterity
+            
+            // Defensive Attributes
+            Armor
+            ArmorTotal
+            BlockChance
+            BlockChanceBonus
+            ArmorBonus
+            DamagePercentReductionFromElites
+            
+            // Adventure
+            MovementSpeed
+            GoldFind
+            MagicFind
+            ExperienceBonus
+            
+            // Resources
+            HatredRegen
+            MaxDiscipline
+            MaxArcanePower
+            MaxMana
+            MaxFury
+            MaxSpirit
+            ManaRegen
+            SpiritRegen
+            ArcaneOnCrit
+            HealthPerSpiritSpent
+            
+            // Defensive
+            ResistAll
+            ResistArcane
+            ResistCold
+            ResistPhysical
+            ResistLightning
+            ResistFire
+            ResistPoison
+            ResistHoly
+            DamageReductionPhysicalPercent
+            Thorns
+            
+            // Offensive
+            WeaponDamageFireMin
+            WeaponDamageFireMax
+            WeaponDamageLightningMin
+            WeaponDamageLightningMax
+            WeaponDamageColdMin
+            WeaponDamageColdMax
+            WeaponDamagePoisonMin
+            WeaponDamagePoisonMax
+            WeaponDamageArcaneMin
+            WeaponDamageArcaneMax
+            WeaponDamageHolyMin
+            WeaponDamageHolyMax
+            AttackSpeedPercent
+            AttackSpeedPercentBonus
+            DamagePercentBonusVsElites
+            WeaponAttacksPerSecond
+            WeaponMinDamage
+            WeaponMaxDamage
+            CritDamagePercent
+            CritPercent
+            FireDamagePercent
+            ColdDamagePercent
+            LightningDamagePercent
+            PoisonDamagePercent
+            ArcaneDamagePercent
+            HolyDamagePercent
+            MinDamage
+            MaxDamage,
+            DPS,
+
+            // Life
+            LifeSteal
+            LifeOnHit
+            LifePercent
+            HitpointsOnKill
+            HealthGlobeBonus
+            HealthPerSecond
+
+
+            // Misc
+            ItemLevelRequirementReduction
+            PickUpRadius
+            Sockets
+            Level
+
+Avaible ItemBaseTypes:
+        Armor,
+        Weapon,
+        Jewelry,
+        Misc,
+        Gem
+
+Avaible ItemTypes:
+        Axe,
+        Sword,
+        Mace,
+        Dagger,
+        Bow,
+        Crossbow,
+        Staff,
+        Spear,
+        Shield,
+        Gloves,
+        Boots,
+        Chest,
+        Ring,
+        Amulet,
+        Quiver,
+        Shoulder,
+        Legs,
+        FistWeapon,
+        Mojo,
+        CeremonialDagger,
+        WizardHat,
+        Helm,
+        Belt,
+        Bracer,
+        Orb,
+        MightyWeapon,
+        MightyBelt,
+        Polearm,
+        Cloak,
+        Wand,
+        SpiritStone,
+        Daibo,
+        HandCrossbow,
+        VoodooMask,
+        Potion,
+        Gem,
+        CraftingReagent,
+        CraftingPage,
+        CraftingPlan,
+        FollowerSpecial
+-->

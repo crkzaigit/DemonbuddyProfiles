@@ -1,0 +1,7 @@
+﻿Current Changelog
+
+ API Changes
+  - BloodshardCount added in CPlayer. 
+  - MarkersManager now includes open world markers. ( bounties / rift bosses )
+  - MainGridProvider is now fully reset whenever the world changes.
+  
