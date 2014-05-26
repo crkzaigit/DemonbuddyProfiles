@@ -1,0 +1,13 @@
+
+====>Rift Bot Common
+杀Boss立即结束、找到回城石立即结束、若在第一层找到回城石，则转转。.
+
+====>Rift Bot Explore
+杀boss后，还转这一层，直到找到石头。
+
+====>Rift Bot Full
+全清
+
+
+====>Rift Bot Rift Bot A4 Bounties Only
+顺带打一次A4箱子
